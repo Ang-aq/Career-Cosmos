@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://cww5ti5n1f0aa"]
+
+[ext_resource type="Texture2D" uid="uid://dmxg8fawnceod" path="res://Sprites/foodplanet.png" id="1_effgs"]
+[ext_resource type="Script" uid="uid://j7h0vhx10q4v" path="res://Scripts/planet.gd" id="1_ej51v"]
+[ext_resource type="Texture2D" uid="uid://bhnpgnu86br1n" path="res://Sprites/placeholdertest.jpg" id="3_r86au"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hiue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_effgs")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r86au")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8g7i6"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="Planet" type="Node2D"]
+script = ExtResource("1_ej51v")
+
+[node name="PlanetImage" type="AnimatedSprite2D" parent="."]
+position = Vector2(512.079, 326.312)
+scale = Vector2(0.589749, 0.56385)
+sprite_frames = SubResource("SpriteFrames_2hiue")
+animation = &"1"
+
+[node name="Moons" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8g7i6")
+animation = &"1"
+
+[node name="Planet Info" type="TextEdit" parent="."]
+offset_left = -56.0
+offset_top = 160.0
+offset_right = 187.0
+offset_bottom = 509.0
+text = "Planet Name: Doneta
+Population: 30 Billion
+
+Info: People of Doneta are 
+called Sprinkels and 
+Sprinkelettes! They enjoy
+baking and eating 
+desserts!
+
+Main Professions: Baker
+Number of moons 
+discovered: 0"

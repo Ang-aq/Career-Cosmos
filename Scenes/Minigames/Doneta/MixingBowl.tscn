@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://7cctxl6h44i5"]
+
+[ext_resource type="Texture2D" uid="uid://4fmaseklubfl" path="res://Sprites/Doneta/Doneta/bowl.png" id="1_260ao"]
+[ext_resource type="Script" uid="uid://tqlfc85kfgg" path="res://Scripts/mixing_bowl.gd" id="1_pe6y5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pe6y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_260ao")
+}],
+"loop": true,
+"name": &"bowl",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"mix",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_260ao"]
+radius = 127.016
+
+[node name="MixingBowl" type="Node2D"]
+script = ExtResource("1_pe6y5")
+
+[node name="BowlImage" type="AnimatedSprite2D" parent="."]
+position = Vector2(575, 331)
+sprite_frames = SubResource("SpriteFrames_pe6y5")
+animation = &"bowl"
+
+[node name="Area2D" type="Area2D" parent="." groups=["bowl"]]
+position = Vector2(564, 327)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 5)
+shape = SubResource("CircleShape2D_260ao")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 290.0
+offset_top = 493.0
+offset_right = 821.0
+offset_bottom = 520.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

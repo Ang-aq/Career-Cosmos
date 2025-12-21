@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://myor1bfyrho5"]
+
+[ext_resource type="Texture2D" uid="uid://btftwvuko3pvq" path="res://Sprites/space.png" id="1_4bgmn"]
+[ext_resource type="Texture2D" uid="uid://dmuxg65ilct7c" path="res://Sprites/shipbg.png" id="1_m7huh"]
+[ext_resource type="PackedScene" uid="uid://cww5ti5n1f0aa" path="res://Scenes/Spaceship/Planet.tscn" id="2_5y05v"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Space" type="Sprite2D" parent="."]
+position = Vector2(623, 334)
+texture = ExtResource("1_4bgmn")
+
+[node name="Shipbg" type="Sprite2D" parent="."]
+position = Vector2(577, 326)
+texture = ExtResource("1_m7huh")
+
+[node name="Planet" parent="." instance=ExtResource("2_5y05v")]
+position = Vector2(116, -51)

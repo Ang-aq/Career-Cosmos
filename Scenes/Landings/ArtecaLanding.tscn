@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnxpgxur63a31"]
+
+[ext_resource type="Script" uid="uid://dkjv0cat0hqs7" path="res://Scripts/arteca_landing.gd" id="1_stt7m"]
+
+[node name="ArtecaLanding" type="Node2D"]
+script = ExtResource("1_stt7m")
+
+[node name="Back" type="Button" parent="."]
+offset_left = 225.0
+offset_top = 175.0
+offset_right = 799.0
+offset_bottom = 464.0
+text = "Go back to main
+"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
