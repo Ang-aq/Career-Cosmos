@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://doxg1dvv4ktu2"]
+
+[ext_resource type="Script" uid="uid://bcjv5hw3bespd" path="res://Scripts/Doneta/sugar.gd" id="1_e2vg7"]
+[ext_resource type="Texture2D" uid="uid://b1ow66a8bnp0q" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (10).png" id="2_omiei"]
+[ext_resource type="Texture2D" uid="uid://cgofrf1n1y220" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (11).png" id="2_tbpgs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_felsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tbpgs")
+}],
+"loop": false,
+"name": &"pouring",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_omiei")
+}],
+"loop": true,
+"name": &"sugar",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxg7g"]
+radius = 32.0
+height = 116.0
+
+[node name="Sugar" type="Node2D" groups=["sugar"]]
+script = ExtResource("1_e2vg7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.00006, 1.00003)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_felsp")
+animation = &"pouring"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mxg7g")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

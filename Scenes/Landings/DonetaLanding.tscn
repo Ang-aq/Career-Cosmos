@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpbo4v8brr860"]
 
-[ext_resource type="Script" uid="uid://cy4bmwlppvolt" path="res://Scripts/doneta_landing.gd" id="1_hhthf"]
+[ext_resource type="Script" uid="uid://cy4bmwlppvolt" path="res://Scripts/Doneta/doneta_landing.gd" id="1_hhthf"]
 
 [node name="DonetaLanding" type="Node2D"]
 script = ExtResource("1_hhthf")

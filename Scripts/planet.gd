@@ -20,6 +20,7 @@ func next_planet():
 	
 func previous_planet():
 	if currentPlanet != 1:
+	
 		currentPlanet = currentPlanet - 1
 		print("current planet %d" % currentPlanet)
 	PlanetImage.play("%d" % currentPlanet)

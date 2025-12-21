@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://myor1bfyrho5"]
+[gd_scene load_steps=7 format=3 uid="uid://myor1bfyrho5"]
 
 [ext_resource type="Texture2D" uid="uid://btftwvuko3pvq" path="res://Sprites/space.png" id="1_4bgmn"]
-[ext_resource type="Texture2D" uid="uid://dmuxg65ilct7c" path="res://Sprites/shipbg.png" id="1_m7huh"]
+[ext_resource type="Texture2D" uid="uid://bgbfakslghgu0" path="res://Sprites/newmainbg1.png" id="2_2ysve"]
 [ext_resource type="PackedScene" uid="uid://cww5ti5n1f0aa" path="res://Scenes/Spaceship/Planet.tscn" id="2_5y05v"]
+[ext_resource type="Texture2D" uid="uid://d1xq6q0nc1c7r" path="res://Sprites/blinkb.png" id="4_4qy6o"]
+[ext_resource type="Texture2D" uid="uid://d3gacgf0um2qm" path="res://Sprites/blink.png" id="5_mslos"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ysve"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("4_4qy6o")
+}, {
+"duration": 3.0,
+"texture": ExtResource("5_mslos")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,8 +27,16 @@ position = Vector2(623, 334)
 texture = ExtResource("1_4bgmn")
 
 [node name="Shipbg" type="Sprite2D" parent="."]
-position = Vector2(577, 326)
-texture = ExtResource("1_m7huh")
+position = Vector2(576, 324)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_2ysve")
 
 [node name="Planet" parent="." instance=ExtResource("2_5y05v")]
-position = Vector2(116, -51)
+position = Vector2(180, -8)
+
+[node name="Blink" type="AnimatedSprite2D" parent="."]
+position = Vector2(1044.5, 505.5)
+scale = Vector2(0.052, 0.052)
+sprite_frames = SubResource("SpriteFrames_2ysve")
+animation = &"blink"
+frame_progress = 0.249509

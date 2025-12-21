@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://0hn66qeydw4j"]
 
-[ext_resource type="Script" uid="uid://gjaesf4nfsnl" path="res://Scripts/whisk.gd" id="1_i32fi"]
+[ext_resource type="Script" uid="uid://gjaesf4nfsnl" path="res://Scripts/Doneta/whisk.gd" id="1_i32fi"]
 [ext_resource type="Texture2D" uid="uid://oie1vi1fqvel" path="res://Sprites/Doneta/Doneta/whisk.png" id="2_3rllk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rd5v3"]
-size = Vector2(788.4029, 345.06372)
+size = Vector2(788.403, 345.064)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i32fi"]
 radius = 16.0
@@ -14,18 +14,17 @@ position = Vector2(572, 323)
 script = ExtResource("1_i32fi")
 
 [node name="WhiskImage" type="Sprite2D" parent="."]
-position = Vector2(3.0517578e-05, -5.999939)
-scale = Vector2(0.22222224, 0.22222224)
+position = Vector2(3.05176e-05, -5.99994)
+scale = Vector2(0.222222, 0.222222)
 texture = ExtResource("2_3rllk")
 
 [node name="HandleArea" type="Area2D" parent="."]
-position = Vector2(32.957764, -33.887268)
-scale = Vector2(0.09533609, 0.09533609)
+position = Vector2(32.9578, -33.8873)
+scale = Vector2(0.0953361, 0.0953361)
 
 [node name="HandleCollision" type="CollisionShape2D" parent="HandleArea"]
-position = Vector2(33.375, -36.210693)
-rotation = -0.73129296
-scale = Vector2(1.0000001, 1.0000001)
+position = Vector2(33.375, -36.2107)
+rotation = -0.731293
 shape = SubResource("RectangleShape2D_rd5v3")
 
 [node name="WhiskArea" type="Area2D" parent="." groups=["whisk"]]

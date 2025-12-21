@@ -1,5 +1,7 @@
 extends Node2D
-
+@onready var milk: AnimatedSprite2D = $Milk
+@onready var yeast: AnimatedSprite2D = $Yeast
+@onready var sugar: AnimatedSprite2D = $Sugar
 
 func _on_temp_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/SpaceShip/Space.tscn")
