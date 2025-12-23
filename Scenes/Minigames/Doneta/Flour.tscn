@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckijw378tjt3k"]
+
+[ext_resource type="Script" uid="uid://j8kkk5b14y76" path="res://Scripts/Doneta/flour.gd" id="1_k323x"]
+[ext_resource type="Texture2D" uid="uid://d2vqv2t4la6y8" path="res://Sprites/Doneta/Doneta/flour.png" id="2_yxxb3"]
+[ext_resource type="Texture2D" uid="uid://cgofrf1n1y220" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (11).png" id="3_1yt3d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_felsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yxxb3")
+}],
+"loop": true,
+"name": &"milk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1yt3d")
+}],
+"loop": false,
+"name": &"pouring",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psm37"]
+size = Vector2(81.75, 83)
+
+[node name="Flour" type="Node2D" groups=["milk"]]
+script = ExtResource("1_k323x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, -1)
+scale = Vector2(0.200875, 0.200875)
+sprite_frames = SubResource("SpriteFrames_felsp")
+animation = &"milk"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-15, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 9)
+shape = SubResource("RectangleShape2D_psm37")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

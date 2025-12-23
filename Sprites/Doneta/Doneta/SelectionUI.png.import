@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oie1vi1fqvel"
-path="res://.godot/imported/whisk.png-1dfaad5daffbd27698befa0f6d783403.ctex"
+uid="uid://7jyvmjntfr8c"
+path="res://.godot/imported/SelectionUI.png-29d30873149f3dbb8b722178558d107f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Doneta/Doneta/whisk.png"
-dest_files=["res://.godot/imported/whisk.png-1dfaad5daffbd27698befa0f6d783403.ctex"]
+source_file="res://Sprites/Doneta/Doneta/SelectionUI.png"
+dest_files=["res://.godot/imported/SelectionUI.png-29d30873149f3dbb8b722178558d107f.ctex"]
 
 [params]
 

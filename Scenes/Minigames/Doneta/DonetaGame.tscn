@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://0vfdvyg2kc1v"]
+[gd_scene load_steps=8 format=3 uid="uid://0vfdvyg2kc1v"]
 
 [ext_resource type="Script" uid="uid://bnf784rg12vw0" path="res://Scripts/Doneta/doneta_game.gd" id="1_767ap"]
 [ext_resource type="PackedScene" uid="uid://7cctxl6h44i5" path="res://Scenes/Minigames/Doneta/MixingBowl.tscn" id="2_mr7up"]
-[ext_resource type="PackedScene" uid="uid://dholft6xjios3" path="res://Scenes/Minigames/Doneta/Yeast.tscn" id="3_767ap"]
+[ext_resource type="PackedScene" uid="uid://dholft6xjios3" path="res://Scenes/Minigames/Doneta/Egg.tscn" id="3_767ap"]
 [ext_resource type="PackedScene" uid="uid://0hn66qeydw4j" path="res://Scenes/Minigames/Doneta/whisk.tscn" id="3_mr7up"]
 [ext_resource type="PackedScene" uid="uid://doxg1dvv4ktu2" path="res://Scenes/Minigames/Doneta/Sugar.tscn" id="4_mclpq"]
-[ext_resource type="PackedScene" uid="uid://ckijw378tjt3k" path="res://Scenes/Minigames/Doneta/Milk.tscn" id="6_umayy"]
+[ext_resource type="PackedScene" uid="uid://ckijw378tjt3k" path="res://Scenes/Minigames/Doneta/Flour.tscn" id="6_umayy"]
+[ext_resource type="PackedScene" uid="uid://jmdeis1lvlnt" path="res://Scenes/Minigames/Doneta/ing_selection.tscn" id="7_umayy"]
 
 [node name="Minigame" type="Node2D"]
 script = ExtResource("1_767ap")
@@ -17,10 +18,22 @@ position = Vector2(0, -1)
 position = Vector2(558, 334)
 
 [node name="Sugar" parent="." instance=ExtResource("4_mclpq")]
-position = Vector2(283, 427)
+visible = false
+position = Vector2(345, 550)
 
-[node name="Yeast" parent="." instance=ExtResource("3_767ap")]
-position = Vector2(846, 437)
+[node name="Egg2" parent="." instance=ExtResource("3_767ap")]
+visible = false
+position = Vector2(802, 576)
+rotation = 0.598648
+
+[node name="Egg" parent="." instance=ExtResource("3_767ap")]
+visible = false
+position = Vector2(769, 578)
+rotation = 0.479966
 
 [node name="Milk" parent="." instance=ExtResource("6_umayy")]
-position = Vector2(569, 78)
+visible = false
+position = Vector2(576, 562)
+
+[node name="IngSelection" parent="." instance=ExtResource("7_umayy")]
+position = Vector2(29, -5)

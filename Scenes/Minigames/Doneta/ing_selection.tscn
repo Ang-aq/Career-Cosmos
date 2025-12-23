@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://jmdeis1lvlnt"]
+
+[ext_resource type="Script" uid="uid://rbjg3ohh1dq6" path="res://Scripts/Doneta/ing_selection.gd" id="1_dhobp"]
+[ext_resource type="Texture2D" uid="uid://7jyvmjntfr8c" path="res://Sprites/Doneta/Doneta/SelectionUI.png" id="2_dhobp"]
+[ext_resource type="PackedScene" uid="uid://doxg1dvv4ktu2" path="res://Scenes/Minigames/Doneta/Sugar.tscn" id="2_wwx0l"]
+[ext_resource type="Texture2D" uid="uid://1ubrib54o381" path="res://Sprites/Doneta/Doneta/ButtonRight.png" id="3_8g7eq"]
+[ext_resource type="PackedScene" uid="uid://ckijw378tjt3k" path="res://Scenes/Minigames/Doneta/Flour.tscn" id="3_dhobp"]
+[ext_resource type="Texture2D" uid="uid://c3o3x4lag7vtw" path="res://Sprites/Doneta/Doneta/ButtonRightPressed.png" id="4_7rx6w"]
+[ext_resource type="PackedScene" uid="uid://dholft6xjios3" path="res://Scenes/Minigames/Doneta/Egg.tscn" id="4_8g7eq"]
+[ext_resource type="Texture2D" uid="uid://c8vtf1s3ldia2" path="res://Sprites/Doneta/Doneta/ButtonLeftPressed.png" id="4_talsp"]
+[ext_resource type="Texture2D" uid="uid://bnbtja8jxgo1x" path="res://Sprites/Doneta/Doneta/ButtonLeft.png" id="5_g0yuk"]
+
+[node name="IngSelectionUI" type="Node2D"]
+script = ExtResource("1_dhobp")
+
+[node name="UI" type="Sprite2D" parent="."]
+position = Vector2(547, 559)
+scale = Vector2(0.547852, 0.547852)
+texture = ExtResource("2_dhobp")
+
+[node name="RightButton" type="TextureButton" parent="."]
+offset_left = 871.0
+offset_top = 522.0
+offset_right = 1418.0
+offset_bottom = 1069.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("3_8g7eq")
+texture_pressed = ExtResource("4_7rx6w")
+
+[node name="LeftButton" type="TextureButton" parent="."]
+offset_left = 180.0
+offset_top = 522.0
+offset_right = 727.0
+offset_bottom = 1069.0
+scale = Vector2(0.15, 0.15)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource("5_g0yuk")
+texture_pressed = ExtResource("4_talsp")
+stretch_mode = 0
+
+[node name="SlotContainer" type="Node2D" parent="."]
+position = Vector2(313, 560)
+
+[node name="Sugar" parent="SlotContainer" instance=ExtResource("2_wwx0l")]
+position = Vector2(77, -1)
+
+[node name="Flour" parent="SlotContainer" instance=ExtResource("3_dhobp")]
+position = Vector2(304, -4)
+
+[node name="Egg" parent="SlotContainer" instance=ExtResource("4_8g7eq")]
+position = Vector2(191, 1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7lxwavjoa6vi"
-path="res://.godot/imported/New Piskel-1.png (9).png-59070b6c8bc63cd8d61909816ef01709.ctex"
+uid="uid://bnbtja8jxgo1x"
+path="res://.godot/imported/ButtonLeft.png-2405eab4adcba0be4ffee6484640823c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Doneta/Doneta/New Piskel-1.png (9).png"
-dest_files=["res://.godot/imported/New Piskel-1.png (9).png-59070b6c8bc63cd8d61909816ef01709.ctex"]
+source_file="res://Sprites/Doneta/Doneta/ButtonLeft.png"
+dest_files=["res://.godot/imported/ButtonLeft.png-2405eab4adcba0be4ffee6484640823c.ctex"]
 
 [params]
 

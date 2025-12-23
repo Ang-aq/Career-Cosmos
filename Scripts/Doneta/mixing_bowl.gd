@@ -8,7 +8,7 @@ signal whisking_completed
 @onready var progress: ProgressBar = $ProgressBar
 @onready var whisk: Node2D = $"../Whisk"
 
-var poured := {"sugar": false, "milk": false, "yeast": false}
+var poured := {"sugar": false, "milk": false, "egg": false}
 var ingredients_poured := 0
 var whisking_time := false
 var whisk_done := false
@@ -100,6 +100,8 @@ func pour_ingredient(ingredient: Node2D, group_name: String) -> void:
 
 	tween.finished.connect(func():
 		sprite.play("pouring")
+		ingredient.locked = true
+		ingredient.emit_signal("used", group_name)
 		ingredient.hide()
 		ingredients_poured += 1
 		progress.value += INGREDIENT_PROGRESS
@@ -120,5 +122,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		pour_ingredient(ingredient, "sugar")
 	elif ingredient.is_in_group("milk"):
 		pour_ingredient(ingredient, "milk")
-	elif ingredient.is_in_group("yeast"):
-		pour_ingredient(ingredient, "yeast")
+	elif ingredient.is_in_group("egg"):
+		pour_ingredient(ingredient, "egg")

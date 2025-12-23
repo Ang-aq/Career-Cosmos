@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oie1vi1fqvel"
-path="res://.godot/imported/whisk.png-1dfaad5daffbd27698befa0f6d783403.ctex"
+uid="uid://d2vqv2t4la6y8"
+path="res://.godot/imported/flour.png-a756431f19e4b475de933adab683fa2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Doneta/Doneta/whisk.png"
-dest_files=["res://.godot/imported/whisk.png-1dfaad5daffbd27698befa0f6d783403.ctex"]
+source_file="res://Sprites/Doneta/Doneta/flour.png"
+dest_files=["res://.godot/imported/flour.png-a756431f19e4b475de933adab683fa2e.ctex"]
 
 [params]
 

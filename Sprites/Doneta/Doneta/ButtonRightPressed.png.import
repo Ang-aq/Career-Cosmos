@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oie1vi1fqvel"
-path="res://.godot/imported/whisk.png-1dfaad5daffbd27698befa0f6d783403.ctex"
+uid="uid://c3o3x4lag7vtw"
+path="res://.godot/imported/ButtonRightPressed.png-3f24aea9891b8d6776a11412e929bd75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Doneta/Doneta/whisk.png"
-dest_files=["res://.godot/imported/whisk.png-1dfaad5daffbd27698befa0f6d783403.ctex"]
+source_file="res://Sprites/Doneta/Doneta/ButtonRightPressed.png"
+dest_files=["res://.godot/imported/ButtonRightPressed.png-3f24aea9891b8d6776a11412e929bd75.ctex"]
 
 [params]
 

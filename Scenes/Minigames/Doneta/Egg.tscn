@@ -1,11 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://dholft6xjios3"]
 
-[ext_resource type="Script" uid="uid://byq1vdj6kh25f" path="res://Scripts/Doneta/yeast.gd" id="1_ckelt"]
+[ext_resource type="Script" uid="uid://byq1vdj6kh25f" path="res://Scripts/Doneta/egg.gd" id="1_ckelt"]
 [ext_resource type="Texture2D" uid="uid://cgofrf1n1y220" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (11).png" id="2_0l2bm"]
-[ext_resource type="Texture2D" uid="uid://c7lxwavjoa6vi" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (9).png" id="2_gdwqd"]
+[ext_resource type="Texture2D" uid="uid://bo2fs1seudhkf" path="res://Sprites/Doneta/Doneta/egg.png" id="3_0l2bm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_felsp"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0l2bm")
+}],
+"loop": true,
+"name": &"egg",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_0l2bm")
@@ -13,34 +21,26 @@ animations = [{
 "loop": false,
 "name": &"pouring",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_gdwqd")
-}],
-"loop": true,
-"name": &"yeast",
-"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mxg7g"]
-radius = 32.0
-height = 116.0
+radius = 28.8357
+height = 80.9344
 
-[node name="Yeast" type="Node2D" groups=["yeast"]]
+[node name="Egg" type="Node2D" groups=["egg"]]
 script = ExtResource("1_ckelt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.999939, 2.00003)
-scale = Vector2(5, 5)
+position = Vector2(-3, -1)
+scale = Vector2(0.214937, 0.214937)
 sprite_frames = SubResource("SpriteFrames_felsp")
-animation = &"pouring"
+animation = &"egg"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 3)
-rotation = 1.5708
+position = Vector2(7.62939e-06, -2.00001)
+rotation = 2.52898
 shape = SubResource("CapsuleShape2D_mxg7g")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

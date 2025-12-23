@@ -38,14 +38,14 @@ animation = &"mix"
 position = Vector2(564, 327)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(24, 0)
+position = Vector2(16, -10)
 shape = SubResource("CircleShape2D_260ao")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 290.0
-offset_top = 493.0
-offset_right = 821.0
-offset_bottom = 520.0
+offset_left = 309.0
+offset_top = 20.0
+offset_right = 840.0
+offset_bottom = 47.0
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -2,7 +2,7 @@ extends Node2D
 
 signal used(ingredient_name)
 
-@export var ingredient_name := "sugar"
+@export var ingredient_name := "egg"
 @export var quantity := 1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
