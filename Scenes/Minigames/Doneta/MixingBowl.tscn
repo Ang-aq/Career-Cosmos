@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://4fmaseklubfl" path="res://Sprites/Doneta/Doneta/bowl.png" id="1_260ao"]
 [ext_resource type="Script" uid="uid://tqlfc85kfgg" path="res://Scripts/Doneta/mixing_bowl.gd" id="1_pe6y5"]
-[ext_resource type="Texture2D" uid="uid://dlxrb22ct2u8g" path="res://Sprites/Doneta/Doneta/ing.png" id="3_xoh3y"]
+[ext_resource type="Texture2D" uid="uid://cbifq2kg5rq7g" path="res://Sprites/Doneta/Doneta/mixingbg.png" id="3_xoh3y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pe6y5"]
 animations = [{
@@ -23,14 +23,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_260ao"]
-radius = 163.049
+[sub_resource type="CircleShape2D" id="CircleShape2D_xoh3y"]
+radius = 183.505
 
 [node name="MixingBowl" type="Node2D"]
 script = ExtResource("1_pe6y5")
 
 [node name="BowlImage" type="AnimatedSprite2D" parent="."]
-position = Vector2(575, 331)
+position = Vector2(576.889, 325.688)
+scale = Vector2(0.500482, 0.500482)
 sprite_frames = SubResource("SpriteFrames_pe6y5")
 animation = &"mix"
 
@@ -38,14 +39,9 @@ animation = &"mix"
 position = Vector2(564, 327)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(16, -10)
-shape = SubResource("CircleShape2D_260ao")
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 309.0
-offset_top = 20.0
-offset_right = 840.0
-offset_bottom = 47.0
+position = Vector2(17, -9)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_xoh3y")
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -15,13 +15,6 @@ script = ExtResource("1_767ap")
 [node name="MixingBowl" parent="." instance=ExtResource("2_mr7up")]
 position = Vector2(0, -1)
 
-[node name="Dough" parent="." instance=ExtResource("8_rp7kv")]
-visible = false
-offset_left = -20.0
-offset_top = -28.0
-offset_right = -20.0
-offset_bottom = -28.0
-
 [node name="Whisk" parent="." instance=ExtResource("3_mr7up")]
 position = Vector2(558, 334)
 
@@ -46,8 +39,9 @@ position = Vector2(576, 562)
 [node name="IngSelection" parent="." instance=ExtResource("7_umayy")]
 position = Vector2(29, -5)
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 305.0
-offset_top = 84.0
-offset_right = 897.0
-offset_bottom = 111.0
+[node name="Dough" parent="." instance=ExtResource("8_rp7kv")]
+visible = false
+offset_left = -20.0
+offset_top = -28.0
+offset_right = -20.0
+offset_bottom = -28.0

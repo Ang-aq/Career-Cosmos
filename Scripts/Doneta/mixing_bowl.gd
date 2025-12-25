@@ -1,40 +1,55 @@
 extends Node2D
 
 signal whisking_completed
+signal progress_requested(amount: float)
 
 @onready var bowl: AnimatedSprite2D = $BowlImage
-@onready var bowl_area: Area2D = $Area2D
 @onready var bowl_shape: CollisionShape2D = $Area2D/CollisionShape2D
-@onready var progress: ProgressBar = $ProgressBar
 @onready var whisk: Node2D = $"../Whisk"
 
 var poured := {"sugar": false, "milk": false, "egg": false}
 var ingredients_poured := 0
 var whisking_time := false
 var whisk_done := false
+var whisk_held := false  # Track if player is holding the whisk
 
 var last_angle := 0.0
 var whisk_quality := 0.0
+var local_progress := 0.0
 
 const INGREDIENT_PROGRESS := 5
-const BASE_PROGRESS := 15
-const WHISK_MAX_PROGRESS := 40
+const BASE_PROGRESS := 0
+const WHISK_MAX_PROGRESS := 25
 
 const ROTATION_THRESHOLD := 0.03
 const WHISK_GAIN_SPEED := 16.0
 const WHISK_DECAY_SPEED := 3.0
 
-func _ready() -> void:
-	progress.value = 0
+func _ready():
 	whisk.hide()
 	bowl.play("bowl")
 
-func _process(delta: float) -> void:
+func _process(delta):
 	if whisking_time and not whisk_done:
-		update_whisk_quality()
-		update_progress(delta)
+		var old_progress = local_progress
+		if whisk_held:
+			update_whisk_quality()
+			update_progress(delta)
+		else:
+			# decay but never below BASE_PROGRESS
+			local_progress = max(local_progress - WHISK_DECAY_SPEED * delta, BASE_PROGRESS)
+		
+		# emit the actual change in progress to the main minigame
+		var delta_progress = local_progress - old_progress
+		if delta_progress != 0:
+			emit_signal("progress_requested", delta_progress)
 
-func update_whisk_quality() -> void:
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			whisk_held = event.pressed
+
+func update_whisk_quality():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var center = bowl.global_position
 	var vec = mouse_pos - center
@@ -68,15 +83,14 @@ func update_whisk_quality() -> void:
 	whisk_quality = lerp(whisk_quality, (radius_score + rotation_score) * 0.5, 0.35)
 	bowl.play("mix")
 
-func update_progress(delta: float) -> void:
+func update_progress(delta):
 	if whisk_quality > 0.05:
-		progress.value += WHISK_GAIN_SPEED * whisk_quality * delta
+		local_progress = clamp(local_progress + WHISK_GAIN_SPEED * whisk_quality * delta, BASE_PROGRESS, WHISK_MAX_PROGRESS)
 	else:
-		progress.value -= WHISK_DECAY_SPEED * delta
+		# decay but never below BASE_PROGRESS
+		local_progress = max(local_progress - WHISK_DECAY_SPEED * delta, BASE_PROGRESS)
 
-	progress.value = clamp(progress.value, BASE_PROGRESS, WHISK_MAX_PROGRESS)
-
-	if progress.value >= WHISK_MAX_PROGRESS and not whisk_done:
+	if local_progress >= WHISK_MAX_PROGRESS and not whisk_done:
 		whisk_done = true
 		emit_signal("whisking_completed")
 
@@ -104,17 +118,19 @@ func pour_ingredient(ingredient: Node2D, group_name: String) -> void:
 		ingredient.emit_signal("used", group_name)
 		ingredient.hide()
 		ingredients_poured += 1
-		progress.value += INGREDIENT_PROGRESS
+		
+		# Send ingredient progress to main minigame
+		emit_signal("progress_requested", INGREDIENT_PROGRESS)
+
 		if ingredients_poured == 3:
 			start_whisking()
 	)
 
-func start_whisking() -> void:
+func start_whisking():
 	whisking_time = true
 	whisk.show()
 	last_angle = 0.0
 	whisk_quality = 0.0
-	bowl.play("bowl")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var ingredient = area.get_parent()
