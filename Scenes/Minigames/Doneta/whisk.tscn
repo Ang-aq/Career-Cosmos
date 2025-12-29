@@ -26,7 +26,6 @@ scale = Vector2(0.0953361, 0.0953361)
 [node name="HandleCollision" type="CollisionShape2D" parent="HandleArea"]
 position = Vector2(472.457, -536.132)
 rotation = -0.851721
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rd5v3")
 
 [node name="WhiskArea" type="Area2D" parent="." groups=["whisk"]]

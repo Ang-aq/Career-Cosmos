@@ -24,6 +24,9 @@ var active := true
 var direction := 1
 var speed := BASE_SPEED
 
+# Track how much progress THIS section has added
+var local_progress := 0
+
 func _ready():
 	label.text = "Stop the bar in the green zone!"
 	reset_round()
@@ -32,7 +35,6 @@ func _process(delta):
 	if not active:
 		return
 
-	# Move the slider
 	slider.position.x += direction * speed * delta
 
 	var left_limit = bar.position.x
@@ -58,6 +60,7 @@ func check_hit():
 
 func on_success():
 	success_count += 1
+	local_progress += PROGRESS_PER_SUCCESS
 	emit_signal("progress_requested", PROGRESS_PER_SUCCESS)
 
 	dough.play("knead")
@@ -69,18 +72,22 @@ func on_success():
 		queue_free()
 		return
 
-	# Increase speed and shrink green zone
 	speed += SPEED_INCREASE
 	green.size.x = max(MIN_GREEN_WIDTH, BASE_GREEN_WIDTH - GREEN_SHRINK * success_count)
 	reset_round()
 
 func on_fail():
-	label.text = "Missed! Try again."
+	label.text = "Missed! Progress lost."
 	active = false
+
+	# ⬇️ REMOVE the progress earned in this section
+	if local_progress > 0:
+		emit_signal("progress_requested", -local_progress)
+		local_progress = 0
 
 	await get_tree().create_timer(0.5).timeout
 
-	# Reset
+	# Reset difficulty
 	success_count = 0
 	speed = BASE_SPEED
 	green.size.x = BASE_GREEN_WIDTH

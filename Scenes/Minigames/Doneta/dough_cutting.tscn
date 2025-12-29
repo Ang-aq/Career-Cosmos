@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://cl2ui0w2ad6fo"]
+
+[ext_resource type="Script" uid="uid://baclt52mhioih" path="res://Scripts/Doneta/dough_cutting.gd" id="1_lvot4"]
+[ext_resource type="Texture2D" uid="uid://bo5b7vq6ppuju" path="res://Sprites/Doneta/Doneta/dough.png" id="2_tx016"]
+[ext_resource type="Texture2D" uid="uid://ecqwnfdfuwxv" path="res://Sprites/Doneta/Doneta/check.png" id="3_424x8"]
+[ext_resource type="Texture2D" uid="uid://cgofrf1n1y220" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (11).png" id="3_ngdov"]
+[ext_resource type="Texture2D" uid="uid://dmxg8fawnceod" path="res://Sprites/foodplanet.png" id="3_tx016"]
+[ext_resource type="Texture2D" uid="uid://c13xe6dq5wtw5" path="res://Sprites/Doneta/Doneta/reset.png" id="4_cfexe"]
+
+[node name="DoughCutting" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lvot4")
+
+[node name="Dough" type="Sprite2D" parent="."]
+position = Vector2(566, 324)
+texture = ExtResource("2_tx016")
+
+[node name="CutContainer" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InstructionLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 11.0
+offset_right = 794.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CheckButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 1032.0
+offset_top = 7.0
+offset_right = 1072.0
+offset_bottom = 47.0
+texture_normal = ExtResource("3_424x8")
+
+[node name="ResetButton" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 874.0
+offset_top = 9.0
+offset_right = 988.0
+offset_bottom = 112.0
+texture_normal = ExtResource("4_cfexe")
+
+[node name="ErrorFlash" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 27.0
+offset_right = 1159.0
+offset_bottom = 675.0
+texture = ExtResource("3_tx016")
+
+[node name="CutPreview" type="Sprite2D" parent="."]
+position = Vector2(599, 280)
+scale = Vector2(2.4375, 2.4375)
+texture = ExtResource("3_ngdov")
