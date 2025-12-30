@@ -1,42 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhigo5bwp4jop"]
+[gd_scene load_steps=5 format=3 uid="uid://bhigo5bwp4jop"]
 
 [ext_resource type="Script" uid="uid://b4qivqqtxnyry" path="res://dialogue.gd" id="1_tgtc2"]
 [ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="2_4xg4g"]
 [ext_resource type="Texture2D" uid="uid://c265kram3hdvx" path="res://Sprites/Doneta/Doneta/smallerchef.png" id="2_qn0no"]
 [ext_resource type="Texture2D" uid="uid://bmsdhqpr84rfh" path="res://Sprites/DialogueBox.png" id="2_qtnsr"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4xg4g"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_qtnsr")
-}],
-"loop": false,
-"name": &"appear",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_qtnsr")
-}],
-"loop": false,
-"name": &"disappear",
-"speed": 5.0
-}]
-
 [node name="Dialogue" type="Node2D"]
 script = ExtResource("1_tgtc2")
 
 [node name="Chef" type="Sprite2D" parent="."]
-position = Vector2(1082, 497)
+position = Vector2(1009, 565)
 scale = Vector2(0.198765, 0.198765)
 texture = ExtResource("2_qn0no")
 
-[node name="TextBox" type="AnimatedSprite2D" parent="."]
+[node name="TextBox" type="Sprite2D" parent="."]
 position = Vector2(580, 532)
 scale = Vector2(0.383333, 0.383333)
-sprite_frames = SubResource("SpriteFrames_4xg4g")
-animation = &"appear"
+texture = ExtResource("2_qtnsr")
 
 [node name="Text" type="Label" parent="."]
 offset_left = 196.0

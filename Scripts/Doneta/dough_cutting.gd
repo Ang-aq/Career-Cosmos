@@ -21,7 +21,7 @@ var active := false   # 🔑 IMPORTANT
 # READY
 # -------------------------
 func _ready():
-	instruction.text = "Cut 8 donuts"
+	instruction.text = "Cut 6 donuts"
 	cut_preview.visible = false
 	error_flash.visible = false
 

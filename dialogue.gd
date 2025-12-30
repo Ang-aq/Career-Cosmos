@@ -2,9 +2,10 @@ extends Node2D
 
 signal dialogue_finished
 
-@onready var text_box: AnimatedSprite2D = $TextBox
+@onready var text_box: Sprite2D = $TextBox
 @onready var text_label: Label = $Text
 @onready var name_tag: Label = $Name
+@onready var Dialogue: Node2D = $"."
 
 var dialogue_queue: Array = []
 var current_index: int = 0
@@ -15,7 +16,6 @@ const TYPE_SPEED := 0.035   # seconds per character
 
 func _ready() -> void:
 	# ensure the box is hidden at start
-	text_box.hide()
 	text_label.text = ""
 	name_tag.text = ""
 
@@ -33,20 +33,14 @@ func _input(event: InputEvent) -> void:
 # [{ "name":"Chef", "text":"Short line." }, ...]
 func show_dialogue(dialogues: Array) -> void:
 	if dialogues.is_empty():
-		# Nothing to show -> immediately emit finished
-		emit_signal("dialogue_finished")
+		dialogue_finished.emit()
 		return
 
-	# Replace the queue with new dialogues (you could append instead if desired)
 	dialogue_queue = dialogues.duplicate()
 	current_index = 0
 	active = true
-
-	# Show box (play appear animation if present) then start first line
-	text_box.show()
-	text_box.play("appear")
-	await text_box.animation_finished
-	# if no animation, just show immediately
+	Dialogue.show()
+	
 	_show_current_dialogue()
 
 func _show_current_dialogue() -> void:
@@ -61,13 +55,14 @@ func _show_current_dialogue() -> void:
 func start_typing(full_text: String) -> void:
 	typing = true
 	text_label.text = ""
-
-	for i in full_text.length():
-		if not typing:
-			break
-		text_label.text += full_text[i]
-		await get_tree().create_timer(TYPE_SPEED).timeout
-
+	
+	var tween = get_tree().create_tween()
+	# This animates the visible_ratio property from 0 to 1
+	text_label.visible_ratio = 0
+	text_label.text = full_text
+	tween.tween_property(text_label, "visible_ratio", 1.0, full_text.length() * TYPE_SPEED)
+	
+	await tween.finished
 	typing = false
 
 func finish_typing() -> void:
@@ -86,12 +81,8 @@ func end_dialogue() -> void:
 	# mark inactive and play disappear (if exists), then emit finished
 	active = false
 	typing = false
-
-	if text_box.has_animation("disappear"):
-		text_box.play("disappear")
-		await text_box.animation_finished
-
-	text_box.hide()
+	
+	Dialogue.hide()
 	text_label.text = ""
 	name_tag.text = ""
 	dialogue_queue.clear()

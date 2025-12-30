@@ -46,6 +46,7 @@ func _on_progress_requested(amount: float):
 # DIALOGUE HELPERS
 # -------------------------
 func _show_ingredient_dialogue():
+	print("showing ing dialogue")
 	dialogue.show_dialogue([
 		{ "name": "Chef", "text": "The first step is adding the ingredients." }
 	])
@@ -59,6 +60,11 @@ func _show_cutting_dialogue():
 	dialogue.show_dialogue([
 		{ "name": "Chef", "text": "Time to cut the donuts carefully." }
 	])
+	
+func _show_mix_dialogue():
+	dialogue.show_dialogue([
+		{ "name": "Chef", "text": "Now mix the ingredients together." }
+	])
 
 # -------------------------
 # PHASE FLOW
@@ -66,16 +72,15 @@ func _show_cutting_dialogue():
 func _on_whisking_completed():
 	if phase != Phase.WHISKING:
 		return
-
+	
 	phase = Phase.KNEADING
-
+	
 	whisk_scene.hide()
-	ing_selection.hide()
 	whisk.hide()
-
+	
 	_show_kneading_dialogue()
 	await dialogue.dialogue_finished
-
+	
 	start_kneading()
 
 func start_kneading():
@@ -86,13 +91,13 @@ func start_kneading():
 func _on_kneading_finished():
 	if phase != Phase.KNEADING:
 		return
-
+	
 	phase = Phase.CUTTING
 	dough_scene.hide()
-
+	
 	_show_cutting_dialogue()
 	await dialogue.dialogue_finished
-
+	
 	start_cutting_donuts()
 
 func start_cutting_donuts():
@@ -103,3 +108,12 @@ func start_cutting_donuts():
 func _on_cutting_finished():
 	phase = Phase.DONE
 	print("Dough complete!")
+
+func _on_all_ingredients_added() -> void:
+	ing_selection.hide()
+	_show_mix_dialogue()
+	await dialogue.dialogue_finished
+
+	# unlock whisking
+	ing_selection.hide()
+	whisk_scene.start_whisking()

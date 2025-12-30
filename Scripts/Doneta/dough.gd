@@ -3,9 +3,11 @@ extends Control
 signal progress_requested(amount: float)
 signal kneading_completed
 
-@onready var bar: ColorRect = $BarContainer/BackgroundBar
-@onready var slider: ColorRect = $BarContainer/Slider
+@onready var bar_container: Control = $BarContainer
+@onready var bar: Sprite2D = $BarContainer/BackgroundBar
+@onready var slider: Sprite2D = $BarContainer/Slider
 @onready var green: ColorRect = $BarContainer/GreenZone
+@onready var stop_button: TextureButton = $StopButton
 @onready var label: Label = $InstructionLabel
 @onready var dough: AnimatedSprite2D = $Dough
 
@@ -20,40 +22,62 @@ const MIN_GREEN_WIDTH := 40.0
 
 # State
 var success_count := 0
-var active := true
 var direction := 1
 var speed := BASE_SPEED
-
-# Track how much progress THIS section has added
+var active := true
+var bar_moving := true
 var local_progress := 0
 
+# Lane bounds
+var lane_left := 0.0
+var lane_right := 0.0
+
 func _ready():
-	label.text = "Stop the bar in the green zone!"
+	label.text = "Click STOP in the green zone!"
+	stop_button.pressed.connect(_on_stop_pressed)
+
+	_calculate_lane()
+	_set_green_width(BASE_GREEN_WIDTH)
 	reset_round()
 
+func _calculate_lane():
+	var bar_width = bar.texture.get_size().x * bar.scale.x
+
+	# Because BackgroundBar is CENTERED
+	lane_left = bar.position.x - bar_width / 2
+	lane_right = bar.position.x + bar_width / 2
+
 func _process(delta):
-	if not active:
+	if not active or not bar_moving:
 		return
 
 	slider.position.x += direction * speed * delta
 
-	var left_limit = bar.position.x
-	var right_limit = bar.position.x + bar.size.x - slider.size.x
+	var slider_width = slider.texture.get_size().x * slider.scale.x
+	var max_x = lane_right - slider_width
 
-	if slider.position.x <= left_limit:
-		slider.position.x = left_limit
+	if slider.position.x <= lane_left:
+		slider.position.x = lane_left
 		direction = 1
-	elif slider.position.x >= right_limit:
-		slider.position.x = right_limit
+	elif slider.position.x >= max_x:
+		slider.position.x = max_x
 		direction = -1
 
-func _input(event):
-	if active and event.is_action_pressed("ui_accept"):
-		check_hit()
+func _on_stop_pressed():
+	if not active or not bar_moving:
+		return
+
+	bar_moving = false
+	check_hit()
 
 func check_hit():
-	var center = slider.position.x + slider.size.x / 2
-	if center >= green.position.x and center <= green.position.x + green.size.x:
+	var slider_width = slider.texture.get_size().x * slider.scale.x
+	var slider_center = slider.position.x + slider_width / 2
+
+	var green_start = green.position.x
+	var green_end = green.position.x + green.size.x
+
+	if slider_center >= green_start and slider_center <= green_end:
 		on_success()
 	else:
 		on_fail()
@@ -73,33 +97,41 @@ func on_success():
 		return
 
 	speed += SPEED_INCREASE
-	green.size.x = max(MIN_GREEN_WIDTH, BASE_GREEN_WIDTH - GREEN_SHRINK * success_count)
+	_shrink_green()
 	reset_round()
 
 func on_fail():
-	label.text = "Missed! Progress lost."
+	label.text = "Missed! Try again."
 	active = false
 
-	# ⬇️ REMOVE the progress earned in this section
 	if local_progress > 0:
 		emit_signal("progress_requested", -local_progress)
 		local_progress = 0
 
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.6).timeout
 
-	# Reset difficulty
 	success_count = 0
 	speed = BASE_SPEED
-	green.size.x = BASE_GREEN_WIDTH
+	_set_green_width(BASE_GREEN_WIDTH)
 	active = true
 	reset_round()
 
 func reset_round():
-	slider.position.x = bar.position.x
+	bar_moving = true
+	slider.position.x = lane_left
 	direction = 1
 	randomize_green()
 
 func randomize_green():
-	var min_x = bar.position.x
-	var max_x = bar.position.x + bar.size.x - green.size.x
-	green.position.x = randf_range(min_x, max_x)
+	var max_x = lane_right - green.size.x
+	green.position.x = randf_range(lane_left, max_x)
+
+func _shrink_green():
+	var new_width = max(
+		MIN_GREEN_WIDTH,
+		BASE_GREEN_WIDTH - GREEN_SHRINK * success_count
+	)
+	_set_green_width(new_width)
+
+func _set_green_width(width: float):
+	green.size.x = width

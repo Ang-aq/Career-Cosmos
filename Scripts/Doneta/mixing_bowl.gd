@@ -18,6 +18,7 @@ var whisk_held: bool = false
 var last_angle: float = 0.0
 var whisk_quality: float = 0.0
 var local_progress: float = 0.0
+var mixing_locked := true
 
 const INGREDIENT_PROGRESS: float = 5.0
 const BASE_PROGRESS: float = 0.0
@@ -35,6 +36,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not whisking_time or whisk_done:
+		return
+		
+	if mixing_locked:
 		return
 
 	var old_progress: float = local_progress
@@ -156,13 +160,18 @@ func pour_ingredient(ingredient: Node2D, group_name: String) -> void:
 		emit_signal("progress_requested", INGREDIENT_PROGRESS)
 
 		if ingredients_poured == 3:
-			whisking_time = true
-			whisk.show()
-			spiral.show()
-			last_angle = 0.0
-			whisk_quality = 0.0
-			bowl.play("mix")
+			mixing_locked = true
+			get_parent()._on_all_ingredients_added()
 	)
+
+func start_whisking() -> void:
+	mixing_locked = false
+	whisking_time = true
+	whisk.show()
+	spiral.show()
+	last_angle = 0.0
+	whisk_quality = 0.0
+	bowl.play("mix")
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var ingredient: Node2D = area.get_parent()
