@@ -6,6 +6,7 @@ extends Node2D
 @onready var whisk: Node2D = $Whisk
 @onready var dough_scene: Control = $Dough
 @onready var cutting_scene: Control = $DoughCutting
+@onready var decorating_scene: Control = $DonutDecorating
 @onready var dialogue: Node2D = $Dialogue
 
 const DOUGH_MAX := 100
@@ -14,6 +15,7 @@ enum Phase {
 	WHISKING,
 	KNEADING,
 	CUTTING,
+	DECORATING,
 	DONE
 }
 
@@ -29,6 +31,7 @@ func _ready():
 
 	dough_scene.hide()
 	cutting_scene.hide()
+	decorating_scene.hide()
 
 	whisk_scene.progress_requested.connect(_on_progress_requested)
 	whisk_scene.whisking_completed.connect(_on_whisking_completed)
@@ -46,9 +49,13 @@ func _on_progress_requested(amount: float):
 # DIALOGUE HELPERS
 # -------------------------
 func _show_ingredient_dialogue():
-	print("showing ing dialogue")
 	dialogue.show_dialogue([
 		{ "name": "Chef", "text": "The first step is adding the ingredients." }
+	])
+
+func _show_mix_dialogue():
+	dialogue.show_dialogue([
+		{ "name": "Chef", "text": "Now mix the ingredients together." }
 	])
 
 func _show_kneading_dialogue():
@@ -60,10 +67,10 @@ func _show_cutting_dialogue():
 	dialogue.show_dialogue([
 		{ "name": "Chef", "text": "Time to cut the donuts carefully." }
 	])
-	
-func _show_mix_dialogue():
+
+func _show_decorating_dialogue():
 	dialogue.show_dialogue([
-		{ "name": "Chef", "text": "Now mix the ingredients together." }
+		{ "name": "Chef", "text": "Decorate your donuts however you like!" }
 	])
 
 # -------------------------
@@ -72,15 +79,15 @@ func _show_mix_dialogue():
 func _on_whisking_completed():
 	if phase != Phase.WHISKING:
 		return
-	
+
 	phase = Phase.KNEADING
-	
-	whisk_scene.hide()
-	whisk.hide()
-	
+
 	_show_kneading_dialogue()
 	await dialogue.dialogue_finished
-	
+
+	whisk_scene.hide()
+	whisk.hide()
+
 	start_kneading()
 
 func start_kneading():
@@ -91,13 +98,12 @@ func start_kneading():
 func _on_kneading_finished():
 	if phase != Phase.KNEADING:
 		return
-	
-	phase = Phase.CUTTING
-	dough_scene.hide()
-	
+
+
 	_show_cutting_dialogue()
 	await dialogue.dialogue_finished
 	
+	phase = Phase.CUTTING
 	start_cutting_donuts()
 
 func start_cutting_donuts():
@@ -106,14 +112,34 @@ func start_cutting_donuts():
 	cutting_scene.donut_cutting_finished.connect(_on_cutting_finished)
 
 func _on_cutting_finished():
-	phase = Phase.DONE
-	print("Dough complete!")
+	if phase != Phase.CUTTING:
+		return
 
-func _on_all_ingredients_added() -> void:
-	ing_selection.hide()
-	_show_mix_dialogue()
+	phase = Phase.DECORATING
+	cutting_scene.hide()
+
+	_show_decorating_dialogue()
 	await dialogue.dialogue_finished
 
-	# unlock whisking
+	start_decorating()
+
+# -------------------------
+# DECORATING
+# -------------------------
+func start_decorating():
+	decorating_scene.show()
+	decorating_scene.decorating_finished.connect(_on_decorating_finished)
+
+func _on_decorating_finished():
+	phase = Phase.DONE
+	decorating_scene.hide()
+	print("Donut finished! 🎉")
+
+# -------------------------
+# INGREDIENT → MIX TRANSITION
+# -------------------------
+func _on_all_ingredients_added():
+	_show_mix_dialogue()
+	await dialogue.dialogue_finished
 	ing_selection.hide()
 	whisk_scene.start_whisking()

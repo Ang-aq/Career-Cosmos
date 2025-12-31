@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://dasclmg5sjoma"]
+
+[ext_resource type="Script" uid="uid://dct7py3y77cga" path="res://donut_decorating.gd" id="1_sbdgk"]
+[ext_resource type="Texture2D" uid="uid://1ho41oi0ewao" path="res://Sprites/Doneta/Donuts/PinkFrosting.png" id="2_t376q"]
+[ext_resource type="Texture2D" uid="uid://cthntg04hvtbp" path="res://Sprites/Doneta/Donuts/WhiteDonut.png" id="3_0wu4w"]
+[ext_resource type="Texture2D" uid="uid://c6bjfsl175wao" path="res://Sprites/Doneta/Donuts/WhiteSprinkles.png" id="4_yuuhs"]
+[ext_resource type="Texture2D" uid="uid://bnbtja8jxgo1x" path="res://Sprites/Doneta/Doneta/ButtonLeft.png" id="5_jnlu3"]
+[ext_resource type="Texture2D" uid="uid://1ubrib54o381" path="res://Sprites/Doneta/Doneta/ButtonRight.png" id="6_j2600"]
+[ext_resource type="Texture2D" uid="uid://c8vtf1s3ldia2" path="res://Sprites/Doneta/Doneta/ButtonLeftPressed.png" id="6_pxnvc"]
+[ext_resource type="Texture2D" uid="uid://c3o3x4lag7vtw" path="res://Sprites/Doneta/Doneta/ButtonRightPressed.png" id="8_wrxpt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pxnvc"]
+radius = 84.0001
+height = 520.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrxpt"]
+radius = 266.0
+height = 920.0
+
+[node name="DonutDecorating" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sbdgk")
+
+[node name="DonutBase" type="Sprite2D" parent="."]
+position = Vector2(586, 331)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_0wu4w")
+
+[node name="Hitbox" type="Area2D" parent="DonutBase"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DonutBase/Hitbox"]
+position = Vector2(2, 296)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pxnvc")
+
+[node name="Icing" type="Sprite2D" parent="."]
+position = Vector2(586, 331)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_t376q")
+
+[node name="Hitbox" type="Area2D" parent="Icing"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icing/Hitbox"]
+position = Vector2(0, -34)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wrxpt")
+
+[node name="Sprinkles" type="Sprite2D" parent="."]
+position = Vector2(586, 331)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_yuuhs")
+
+[node name="LeftArrow" type="TextureButton" parent="."]
+offset_left = 207.0
+offset_top = 269.0
+offset_right = 707.0
+offset_bottom = 769.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("5_jnlu3")
+texture_pressed = ExtResource("6_pxnvc")
+
+[node name="RightArrow" type="TextureButton" parent="."]
+offset_left = 839.0
+offset_top = 269.0
+offset_right = 1339.0
+offset_bottom = 769.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("6_j2600")
+texture_pressed = ExtResource("8_wrxpt")
+
+[node name="DoneButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

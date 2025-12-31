@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0vfdvyg2kc1v"]
+[gd_scene load_steps=14 format=3 uid="uid://0vfdvyg2kc1v"]
 
 [ext_resource type="Script" uid="uid://bnf784rg12vw0" path="res://Scripts/Doneta/doneta_game.gd" id="1_767ap"]
 [ext_resource type="PackedScene" uid="uid://7cctxl6h44i5" path="res://Scenes/Minigames/Doneta/MixingBowl.tscn" id="2_mr7up"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c714y3xhihpl2" path="res://Scenes/Minigames/Doneta/dough.tscn" id="8_rp7kv"]
 [ext_resource type="PackedScene" uid="uid://bhigo5bwp4jop" path="res://Dialogue.tscn" id="9_g4bnx"]
 [ext_resource type="PackedScene" uid="uid://cl2ui0w2ad6fo" path="res://Scenes/Minigames/Doneta/dough_cutting.tscn" id="10_dss4p"]
+[ext_resource type="PackedScene" uid="uid://dasclmg5sjoma" path="res://DonutDecorating.tscn" id="11_e23ma"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dss4p"]
 bg_color = Color(0.396078, 0.376471, 0.658824, 1)
@@ -79,7 +80,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_dss4p")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g4bnx")
 show_percentage = false
 
-[node name="Dialogue" parent="." instance=ExtResource("9_g4bnx")]
+[node name="DonutDecorating" parent="." instance=ExtResource("11_e23ma")]
 
 [node name="DoughCutting" parent="." instance=ExtResource("10_dss4p")]
 visible = false
@@ -87,3 +88,5 @@ offset_left = -6.0
 offset_top = 2.0
 offset_right = -6.0
 offset_bottom = 2.0
+
+[node name="Dialogue" parent="." instance=ExtResource("9_g4bnx")]
