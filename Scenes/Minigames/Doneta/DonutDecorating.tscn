@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dasclmg5sjoma"]
+[gd_scene load_steps=12 format=3 uid="uid://dasclmg5sjoma"]
 
-[ext_resource type="Script" uid="uid://dct7py3y77cga" path="res://donut_decorating.gd" id="1_sbdgk"]
+[ext_resource type="Script" uid="uid://dct7py3y77cga" path="res://Scripts/Doneta/donut_decorating.gd" id="1_sbdgk"]
+[ext_resource type="Texture2D" uid="uid://cw7eyibittt4a" path="res://Sprites/Doneta/Doneta/table.png" id="2_nrulb"]
 [ext_resource type="Texture2D" uid="uid://1ho41oi0ewao" path="res://Sprites/Doneta/Donuts/PinkFrosting.png" id="2_t376q"]
 [ext_resource type="Texture2D" uid="uid://cthntg04hvtbp" path="res://Sprites/Doneta/Donuts/WhiteDonut.png" id="3_0wu4w"]
 [ext_resource type="Texture2D" uid="uid://c6bjfsl175wao" path="res://Sprites/Doneta/Donuts/WhiteSprinkles.png" id="4_yuuhs"]
@@ -21,6 +22,11 @@ height = 920.0
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_sbdgk")
+
+[node name="Table" type="Sprite2D" parent="."]
+position = Vector2(605, 347)
+scale = Vector2(0.638117, 0.638117)
+texture = ExtResource("2_nrulb")
 
 [node name="DonutBase" type="Sprite2D" parent="."]
 position = Vector2(586, 331)
@@ -52,6 +58,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_yuuhs")
 
 [node name="LeftArrow" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 207.0
 offset_top = 269.0
 offset_right = 707.0
@@ -61,6 +68,7 @@ texture_normal = ExtResource("5_jnlu3")
 texture_pressed = ExtResource("6_pxnvc")
 
 [node name="RightArrow" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 839.0
 offset_top = 269.0
 offset_right = 1339.0
@@ -70,5 +78,6 @@ texture_normal = ExtResource("6_j2600")
 texture_pressed = ExtResource("8_wrxpt")
 
 [node name="DoneButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

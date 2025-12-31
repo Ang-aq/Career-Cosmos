@@ -13,9 +13,6 @@ signal decorating_finished
 @onready var right_arrow: TextureButton = $RightArrow
 @onready var done_button: TextureButton = $DoneButton
 
-# -------------------------
-# TEXTURE OPTIONS
-# -------------------------
 var donut_textures := [
 	preload("res://Sprites/Doneta/Donuts/BlueDonut.png"),
 	preload("res://Sprites/Doneta/Donuts/ChocoDonut.png"),
@@ -40,16 +37,10 @@ var sprinkle_textures := [
 	preload("res://Sprites/Doneta/Donuts/WhiteSprinkles.png"),
 ]
 
-# -------------------------
-# STATE
-# -------------------------
 var donut_index := 0
 var icing_index := 0
 var sprinkle_index := 0
 
-# -------------------------
-# READY
-# -------------------------
 func _ready():
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	_update_all()
@@ -62,9 +53,6 @@ func _ready():
 	right_arrow.pressed.connect(_on_right_arrow_pressed)
 	done_button.pressed.connect(_on_done_pressed)
 
-# -------------------------
-# CLICK HANDLERS
-# -------------------------
 func _on_donut_clicked(_viewport, event: InputEvent, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		donut_index = (donut_index + 1) % donut_textures.size()
@@ -87,9 +75,6 @@ func _on_done_pressed():
 	decorating_finished.emit()
 	hide()
 
-# -------------------------
-# HELPERS
-# -------------------------
 func _update_all():
 	donut_base.texture = donut_textures[donut_index]
 	icing.texture = icing_textures[icing_index]

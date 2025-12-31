@@ -39,4 +39,4 @@ position = Vector2(1044.5, 505.5)
 scale = Vector2(0.052, 0.052)
 sprite_frames = SubResource("SpriteFrames_2ysve")
 animation = &"blink"
-frame_progress = 0.249509
+frame_progress = 0.46789

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c714y3xhihpl2" path="res://Scenes/Minigames/Doneta/dough.tscn" id="8_rp7kv"]
 [ext_resource type="PackedScene" uid="uid://bhigo5bwp4jop" path="res://Dialogue.tscn" id="9_g4bnx"]
 [ext_resource type="PackedScene" uid="uid://cl2ui0w2ad6fo" path="res://Scenes/Minigames/Doneta/dough_cutting.tscn" id="10_dss4p"]
-[ext_resource type="PackedScene" uid="uid://dasclmg5sjoma" path="res://DonutDecorating.tscn" id="11_e23ma"]
+[ext_resource type="PackedScene" uid="uid://dasclmg5sjoma" path="res://Scenes/Minigames/Doneta/DonutDecorating.tscn" id="11_e23ma"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dss4p"]
 bg_color = Color(0.396078, 0.376471, 0.658824, 1)

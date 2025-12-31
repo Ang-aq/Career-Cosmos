@@ -21,9 +21,6 @@ enum Phase {
 
 var phase := Phase.WHISKING
 
-# -------------------------
-# READY
-# -------------------------
 func _ready():
 	progress.min_value = 0
 	progress.max_value = DOUGH_MAX
@@ -38,16 +35,10 @@ func _ready():
 
 	_show_ingredient_dialogue()
 
-# -------------------------
-# PROGRESS
-# -------------------------
 func _on_progress_requested(amount: float):
 	if phase == Phase.WHISKING or phase == Phase.KNEADING:
 		progress.value = clamp(progress.value + amount, 0, progress.max_value)
 
-# -------------------------
-# DIALOGUE HELPERS
-# -------------------------
 func _show_ingredient_dialogue():
 	dialogue.show_dialogue([
 		{ "name": "Chef", "text": "The first step is adding the ingredients." }
@@ -73,9 +64,6 @@ func _show_decorating_dialogue():
 		{ "name": "Chef", "text": "Decorate your donuts however you like!" }
 	])
 
-# -------------------------
-# PHASE FLOW
-# -------------------------
 func _on_whisking_completed():
 	if phase != Phase.WHISKING:
 		return
@@ -123,9 +111,6 @@ func _on_cutting_finished():
 
 	start_decorating()
 
-# -------------------------
-# DECORATING
-# -------------------------
 func start_decorating():
 	decorating_scene.show()
 	decorating_scene.decorating_finished.connect(_on_decorating_finished)
@@ -133,11 +118,8 @@ func start_decorating():
 func _on_decorating_finished():
 	phase = Phase.DONE
 	decorating_scene.hide()
-	print("Donut finished! 🎉")
+	print("Donut finished!")
 
-# -------------------------
-# INGREDIENT → MIX TRANSITION
-# -------------------------
 func _on_all_ingredients_added():
 	_show_mix_dialogue()
 	await dialogue.dialogue_finished

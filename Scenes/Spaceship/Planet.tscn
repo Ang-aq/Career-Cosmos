@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cww5ti5n1f0aa"]
+[gd_scene load_steps=14 format=3 uid="uid://cww5ti5n1f0aa"]
 
 [ext_resource type="Texture2D" uid="uid://dmxg8fawnceod" path="res://Sprites/foodplanet.png" id="1_effgs"]
 [ext_resource type="Script" uid="uid://j7h0vhx10q4v" path="res://Scripts/planet.gd" id="1_ej51v"]
 [ext_resource type="Texture2D" uid="uid://bhnpgnu86br1n" path="res://Sprites/placeholdertest.jpg" id="3_r86au"]
+[ext_resource type="Texture2D" uid="uid://dvu7crscxqds3" path="res://Sprites/Lever.png" id="4_btkwt"]
+[ext_resource type="Texture2D" uid="uid://duort8rt4a1ge" path="res://Sprites/LeverSelected.png" id="5_h8cq0"]
+[ext_resource type="Texture2D" uid="uid://d2fqqtyhrhinf" path="res://Sprites/BlueButton.png" id="6_r03nr"]
+[ext_resource type="Texture2D" uid="uid://0vr8tpbqyawq" path="res://Sprites/BlueButtonPressed.png" id="7_uqtnk"]
+[ext_resource type="Texture2D" uid="uid://bmblckhdwa3k7" path="res://Sprites/BlueButtonSelected.png" id="8_6xtds"]
+[ext_resource type="Texture2D" uid="uid://d17qfunws30g5" path="res://Sprites/RedButton.png" id="9_bynpq"]
+[ext_resource type="Texture2D" uid="uid://ndqbwt758v40" path="res://Sprites/RedButtonPressed.png" id="10_vl6gk"]
+[ext_resource type="Texture2D" uid="uid://yjo04rh04yrt" path="res://Sprites/RedButtonSelected.png" id="11_0p7ot"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2hiue"]
 animations = [{
@@ -69,3 +77,36 @@ desserts!
 Main Professions: Baker
 Number of moons 
 discovered: 0"
+
+[node name="Lever" type="TextureButton" parent="."]
+offset_left = 134.0
+offset_top = 388.0
+offset_right = 384.0
+offset_bottom = 638.0
+scale = Vector2(0.736, 0.736)
+texture_normal = ExtResource("4_btkwt")
+texture_hover = ExtResource("5_h8cq0")
+
+[node name="BlueButton" type="TextureButton" parent="."]
+offset_left = 322.0
+offset_top = 401.0
+offset_right = 572.0
+offset_bottom = 651.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("6_r03nr")
+texture_pressed = ExtResource("7_uqtnk")
+texture_hover = ExtResource("8_6xtds")
+
+[node name="RedButton" type="TextureButton" parent="."]
+offset_left = 469.0
+offset_top = 401.0
+offset_right = 719.0
+offset_bottom = 651.0
+scale = Vector2(0.8, 0.8)
+texture_normal = ExtResource("9_bynpq")
+texture_pressed = ExtResource("10_vl6gk")
+texture_hover = ExtResource("11_0p7ot")
+
+[connection signal="pressed" from="Lever" to="." method="_on_lever_pressed"]
+[connection signal="pressed" from="BlueButton" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="RedButton" to="." method="_on_red_button_pressed"]
