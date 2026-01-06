@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://dasclmg5sjoma"]
+[gd_scene load_steps=14 format=3 uid="uid://dasclmg5sjoma"]
 
 [ext_resource type="Script" uid="uid://dct7py3y77cga" path="res://Scripts/Doneta/donut_decorating.gd" id="1_sbdgk"]
 [ext_resource type="Texture2D" uid="uid://cw7eyibittt4a" path="res://Sprites/Doneta/Doneta/table.png" id="2_nrulb"]
 [ext_resource type="Texture2D" uid="uid://1ho41oi0ewao" path="res://Sprites/Doneta/Donuts/PinkFrosting.png" id="2_t376q"]
 [ext_resource type="Texture2D" uid="uid://cthntg04hvtbp" path="res://Sprites/Doneta/Donuts/WhiteDonut.png" id="3_0wu4w"]
+[ext_resource type="Texture2D" uid="uid://bt8k3hhnrn8qh" path="res://Sprites/Doneta/Doneta/donuteplate.png" id="3_5dq48"]
 [ext_resource type="Texture2D" uid="uid://c6bjfsl175wao" path="res://Sprites/Doneta/Donuts/WhiteSprinkles.png" id="4_yuuhs"]
 [ext_resource type="Texture2D" uid="uid://bnbtja8jxgo1x" path="res://Sprites/Doneta/Doneta/ButtonLeft.png" id="5_jnlu3"]
 [ext_resource type="Texture2D" uid="uid://1ubrib54o381" path="res://Sprites/Doneta/Doneta/ButtonRight.png" id="6_j2600"]
 [ext_resource type="Texture2D" uid="uid://c8vtf1s3ldia2" path="res://Sprites/Doneta/Doneta/ButtonLeftPressed.png" id="6_pxnvc"]
 [ext_resource type="Texture2D" uid="uid://c3o3x4lag7vtw" path="res://Sprites/Doneta/Doneta/ButtonRightPressed.png" id="8_wrxpt"]
+[ext_resource type="Texture2D" uid="uid://ecqwnfdfuwxv" path="res://Sprites/Doneta/Doneta/check.png" id="11_ri78e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pxnvc"]
 radius = 84.0001
@@ -24,9 +26,14 @@ anchors_preset = 0
 script = ExtResource("1_sbdgk")
 
 [node name="Table" type="Sprite2D" parent="."]
-position = Vector2(605, 347)
-scale = Vector2(0.638117, 0.638117)
+position = Vector2(584, 336)
+scale = Vector2(0.525077, 0.525077)
 texture = ExtResource("2_nrulb")
+
+[node name="Donuteplate" type="Sprite2D" parent="."]
+position = Vector2(586.25, 336)
+scale = Vector2(0.509766, 0.509766)
+texture = ExtResource("3_5dq48")
 
 [node name="DonutBase" type="Sprite2D" parent="."]
 position = Vector2(586, 331)
@@ -79,5 +86,8 @@ texture_pressed = ExtResource("8_wrxpt")
 
 [node name="DoneButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 547.0
+offset_top = 579.0
+offset_right = 661.0
+offset_bottom = 682.0
+texture_normal = ExtResource("11_ri78e")

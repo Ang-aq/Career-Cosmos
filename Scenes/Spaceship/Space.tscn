@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://myor1bfyrho5"]
+[gd_scene load_steps=8 format=3 uid="uid://myor1bfyrho5"]
 
-[ext_resource type="Texture2D" uid="uid://btftwvuko3pvq" path="res://Sprites/space.png" id="1_4bgmn"]
+[ext_resource type="Texture2D" uid="uid://dwojxiu4qnilu" path="res://Sprites/ezgif-40743ecf9c65d43f.png" id="1_4qy6o"]
+[ext_resource type="Script" uid="uid://6gpts32d4dp" path="res://Scenes/Spaceship/space.gd" id="1_mslos"]
 [ext_resource type="Texture2D" uid="uid://bgbfakslghgu0" path="res://Sprites/newmainbg1.png" id="2_2ysve"]
 [ext_resource type="PackedScene" uid="uid://cww5ti5n1f0aa" path="res://Scenes/Spaceship/Planet.tscn" id="2_5y05v"]
 [ext_resource type="Texture2D" uid="uid://d1xq6q0nc1c7r" path="res://Sprites/blinkb.png" id="4_4qy6o"]
@@ -21,10 +22,12 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_mslos")
 
-[node name="Space" type="Sprite2D" parent="."]
-position = Vector2(623, 334)
-texture = ExtResource("1_4bgmn")
+[node name="Ezgif-40743Ecf9c65d43f" type="Sprite2D" parent="."]
+position = Vector2(614, 341)
+scale = Vector2(1.16875, 1.16875)
+texture = ExtResource("1_4qy6o")
 
 [node name="Shipbg" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
@@ -33,6 +36,13 @@ texture = ExtResource("2_2ysve")
 
 [node name="Planet" parent="." instance=ExtResource("2_5y05v")]
 position = Vector2(180, -8)
+
+[node name="Blink2" type="AnimatedSprite2D" parent="."]
+position = Vector2(356, 363)
+scale = Vector2(0.0530481, 0.0530481)
+sprite_frames = SubResource("SpriteFrames_2ysve")
+animation = &"blink"
+frame_progress = 0.46789
 
 [node name="Blink" type="AnimatedSprite2D" parent="."]
 position = Vector2(1044.5, 505.5)
