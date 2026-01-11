@@ -14,23 +14,31 @@ var typing: bool = false
 
 const TYPE_SPEED := 0.035   # seconds per character
 
+# -------------------------
+# READY
+# -------------------------
 func _ready() -> void:
-	# ensure the box is hidden at start
 	text_label.text = ""
 	name_tag.text = ""
+	Dialogue.hide()
 
-func _input(event: InputEvent) -> void:
+# -------------------------
+# TAP / CLICK INPUT
+# -------------------------
+func _unhandled_input(event: InputEvent) -> void:
 	if not active:
 		return
 
-	if event.is_action_pressed("ui_accept"):
+	if event is InputEventMouseButton and event.pressed:
 		if typing:
 			finish_typing()
 		else:
 			advance_dialogue()
 
-# Show an array of dialogue entries:
-# [{ "name":"Chef", "text":"Short line." }, ...]
+# -------------------------
+# PUBLIC ENTRY POINT
+# dialogues = [{ "name":"Chef", "text":"Hello." }, ...]
+# -------------------------
 func show_dialogue(dialogues: Array) -> void:
 	if dialogues.is_empty():
 		dialogue_finished.emit()
@@ -39,10 +47,13 @@ func show_dialogue(dialogues: Array) -> void:
 	dialogue_queue = dialogues.duplicate()
 	current_index = 0
 	active = true
+
 	Dialogue.show()
-	
 	_show_current_dialogue()
 
+# -------------------------
+# DIALOGUE FLOW
+# -------------------------
 func _show_current_dialogue() -> void:
 	if current_index >= dialogue_queue.size():
 		end_dialogue()
@@ -54,21 +65,23 @@ func _show_current_dialogue() -> void:
 
 func start_typing(full_text: String) -> void:
 	typing = true
-	text_label.text = ""
-	
-	var tween = get_tree().create_tween()
-	# This animates the visible_ratio property from 0 to 1
-	text_label.visible_ratio = 0
 	text_label.text = full_text
-	tween.tween_property(text_label, "visible_ratio", 1.0, full_text.length() * TYPE_SPEED)
-	
+	text_label.visible_ratio = 0.0
+
+	var tween := create_tween()
+	tween.tween_property(
+		text_label,
+		"visible_ratio",
+		1.0,
+		full_text.length() * TYPE_SPEED
+	)
+
 	await tween.finished
 	typing = false
 
 func finish_typing() -> void:
 	typing = false
-	if current_index < dialogue_queue.size():
-		text_label.text = str(dialogue_queue[current_index].get("text", ""))
+	text_label.visible_ratio = 1.0
 
 func advance_dialogue() -> void:
 	current_index += 1
@@ -78,13 +91,12 @@ func advance_dialogue() -> void:
 		_show_current_dialogue()
 
 func end_dialogue() -> void:
-	# mark inactive and play disappear (if exists), then emit finished
 	active = false
 	typing = false
-	
+
 	Dialogue.hide()
 	text_label.text = ""
 	name_tag.text = ""
 	dialogue_queue.clear()
 
-	emit_signal("dialogue_finished")
+	dialogue_finished.emit()

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://4fss8qa3uy2t"]
+
+[ext_resource type="Script" uid="uid://cmwywe7pqc0ej" path="res://Scenes/Spaceship/backstory.gd" id="1_eg4bb"]
+[ext_resource type="Texture2D" uid="uid://ecqwnfdfuwxv" path="res://Sprites/Doneta/Doneta/check.png" id="2_pfukj"]
+[ext_resource type="Texture2D" uid="uid://ndqbwt758v40" path="res://Sprites/RedButtonPressed.png" id="3_kh1ik"]
+[ext_resource type="Texture2D" uid="uid://0vr8tpbqyawq" path="res://Sprites/BlueButtonPressed.png" id="4_uvf6r"]
+[ext_resource type="Texture2D" uid="uid://duort8rt4a1ge" path="res://Sprites/LeverSelected.png" id="5_y36w4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_eg4bb")
+
+[node name="Panel1" type="Sprite2D" parent="."]
+position = Vector2(454, 158)
+texture = ExtResource("2_pfukj")
+
+[node name="Panel2" type="Sprite2D" parent="."]
+position = Vector2(875, 149)
+texture = ExtResource("3_kh1ik")
+
+[node name="Panel3" type="Sprite2D" parent="."]
+position = Vector2(490, 448)
+texture = ExtResource("4_uvf6r")
+
+[node name="Panel4" type="Sprite2D" parent="."]
+position = Vector2(843, 443)
+texture = ExtResource("5_y36w4")

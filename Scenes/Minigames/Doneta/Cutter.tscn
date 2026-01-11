@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dba5k2mhobdq3"]
+
+[ext_resource type="Texture2D" uid="uid://l1jlgiyt6ldh" path="res://Sprites/Doneta/Doneta/donutcutter1.png" id="1_vgsqf"]
+
+[node name="Cutter" type="Sprite2D"]
+position = Vector2(-9.53674e-07, 3)
+scale = Vector2(0.149353, 0.149353)
+texture = ExtResource("1_vgsqf")

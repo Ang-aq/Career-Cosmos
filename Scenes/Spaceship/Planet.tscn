@@ -71,16 +71,7 @@ offset_bottom = 381.0
 theme_override_colors/font_color = Color(0.219626, 0.445708, 1, 1)
 theme_override_fonts/font = ExtResource("4_h8cq0")
 theme_override_font_sizes/font_size = 20
-text = "Planet Name: Doneta
-Population: 30 Billion
-Info: People of Doneta are 
-called Sprinkels and 
-Sprinkelettes! They enjoy
-baking and eating 
-desserts!
-Main Professions: Baker
-Number of moons 
-discovered: 0"
+text = "PLANET INFO"
 
 [node name="Lever" type="TextureButton" parent="."]
 offset_left = 134.0

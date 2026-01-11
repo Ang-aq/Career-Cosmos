@@ -1,17 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhigo5bwp4jop"]
+[gd_scene load_steps=8 format=3 uid="uid://bhigo5bwp4jop"]
 
 [ext_resource type="Script" uid="uid://b4qivqqtxnyry" path="res://dialogue.gd" id="1_tgtc2"]
 [ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="2_4xg4g"]
-[ext_resource type="Texture2D" uid="uid://c265kram3hdvx" path="res://Sprites/Doneta/Doneta/smallerchef.png" id="2_qn0no"]
+[ext_resource type="Texture2D" uid="uid://hfweij01lcxe" path="res://Sprites/Doneta/Doneta/bluechef.png" id="2_qn0no"]
 [ext_resource type="Texture2D" uid="uid://bmsdhqpr84rfh" path="res://Sprites/DialogueBox.png" id="2_qtnsr"]
+[ext_resource type="Texture2D" uid="uid://bu3w33l782r0k" path="res://Sprites/Doneta/Doneta/circlebluechef.png" id="3_g12sc"]
+[ext_resource type="Texture2D" uid="uid://deugsilvrftht" path="res://Sprites/Doneta/Doneta/talkbluechef.png" id="4_ryofh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtnsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qn0no")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("3_g12sc")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_ryofh")
+}, {
+"duration": 1.5,
+"texture": ExtResource("2_qn0no")
+}],
+"loop": true,
+"name": &"Talking",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation_2",
+"speed": 5.0
+}]
 
 [node name="Dialogue" type="Node2D"]
 script = ExtResource("1_tgtc2")
 
-[node name="Chef" type="Sprite2D" parent="."]
-position = Vector2(1009, 565)
-scale = Vector2(0.198765, 0.198765)
-texture = ExtResource("2_qn0no")
+[node name="Chef" type="AnimatedSprite2D" parent="."]
+position = Vector2(784, 538)
+scale = Vector2(0.238508, 0.238508)
+sprite_frames = SubResource("SpriteFrames_qtnsr")
+animation = &"Talking"
+frame_progress = 0.288916
 
 [node name="TextBox" type="Sprite2D" parent="."]
 position = Vector2(580, 532)

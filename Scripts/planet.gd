@@ -6,30 +6,20 @@ extends Node2D
 var currentPlanet: int = 1
 var finalPlanet: int = 2
 
-# -------------------------
-# Planet info data
-# -------------------------
 var planet_infos := {
 	1: "NAME: Doneta\n-----------------\nPROFESSION: Chef\n\nINFO: Donetians love\ndesserts and candy!\n\nDIFFICULTY: Easy",
 	2: "NAME: Arteca\n-----------------\nPROFESSION: Architect\n\nINFO: A planet packed\nwith skyscrapers!\n\nDIFFICULTY: Medium"
 }
 
-# Typewriter effect variables
-var typing_speed: float = 0.05 # seconds per character
+var typing_speed: float = 0.03
 var typing_task: Timer = null
 var blinking_task: Timer = null
 
-# -------------------------
-# READY
-# -------------------------
 func _ready():
 	PlanetImage.play("%d" % currentPlanet)
 	PlanetImage.modulate.a = 1.0  # fully visible
 	_show_planet_info(currentPlanet)
 
-# -------------------------
-# Planet Buttons
-# -------------------------
 func _on_blue_button_pressed() -> void:
 	if currentPlanet <= 1:
 		return
@@ -48,9 +38,12 @@ func _on_red_button_pressed() -> void:
 	print("current planet %d" % currentPlanet)
 	_play_planet_transition(previous, currentPlanet)
 
-# -------------------------
-# Planet Fade Transition
-# -------------------------
+func _on_lever_pressed() -> void:
+	if currentPlanet == 1:
+		get_tree().change_scene_to_file("res://Scenes/Minigames/Doneta/DonetaGame.tscn")
+	if currentPlanet == 2:
+		get_tree().change_scene_to_file("res://Scenes/Landings/ArtecaLanding.tscn")
+
 func _play_planet_transition(oldPlanet: int, newPlanet: int) -> void:
 	# Create a temporary sprite for the old planet
 	var old_sprite := PlanetImage.duplicate() as AnimatedSprite2D
@@ -74,9 +67,6 @@ func _play_planet_transition(oldPlanet: int, newPlanet: int) -> void:
 	# Update planet info with typewriter effect
 	_show_planet_info(newPlanet)
 
-# -------------------------
-# Typewriter Effect for Planet Info
-# -------------------------
 func _show_planet_info(planet_id: int) -> void:
 	# Stop any previous typing/blinking tasks
 	if typing_task != null and typing_task.is_inside_tree():
@@ -94,9 +84,6 @@ func _show_planet_info(planet_id: int) -> void:
 	# Start typing effect
 	_start_typing_effect(planet_infos[planet_id])
 
-# -------------------------
-# Typing effect using Timer and await
-# -------------------------
 func _start_typing_effect(full_text: String) -> void:
 	typing_task = Timer.new()
 	typing_task.wait_time = typing_speed
@@ -113,9 +100,6 @@ func _start_typing_effect(full_text: String) -> void:
 	typing_task.queue_free()
 	typing_task = null
 
-# -------------------------
-# Blinking cursor
-# -------------------------
 func _start_blinking_cursor(full_text: String) -> void:
 	var show_underscore := true
 	blinking_task = Timer.new()

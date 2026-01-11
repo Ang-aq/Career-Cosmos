@@ -86,8 +86,9 @@ texture_pressed = ExtResource("8_wrxpt")
 
 [node name="DoneButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 547.0
-offset_top = 579.0
-offset_right = 661.0
-offset_bottom = 682.0
+offset_left = 929.0
+offset_top = 1.00003
+offset_right = 1441.0
+offset_bottom = 257.0
+scale = Vector2(0.545, 0.545)
 texture_normal = ExtResource("11_ri78e")

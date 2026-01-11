@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl2ui0w2ad6fo"]
+[gd_scene load_steps=8 format=3 uid="uid://cl2ui0w2ad6fo"]
 
 [ext_resource type="Script" uid="uid://baclt52mhioih" path="res://Scripts/Doneta/dough_cutting.gd" id="1_lvot4"]
 [ext_resource type="Texture2D" uid="uid://s3rdngsuubls" path="res://Sprites/Doneta/Doneta/cuttingdough.png" id="2_424x8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmxg8fawnceod" path="res://Sprites/foodplanet.png" id="3_tx016"]
 [ext_resource type="Texture2D" uid="uid://c13xe6dq5wtw5" path="res://Sprites/Doneta/Doneta/reset.png" id="4_cfexe"]
 [ext_resource type="Texture2D" uid="uid://bv3y1ej6fn6d0" path="res://Sprites/Doneta/Doneta/cut.png" id="6_424x8"]
+[ext_resource type="Texture2D" uid="uid://l1jlgiyt6ldh" path="res://Sprites/Doneta/Doneta/donutcutter1.png" id="7_cfexe"]
 
 [node name="DoughCutting" type="Control"]
 layout_mode = 3
@@ -36,18 +37,20 @@ horizontal_alignment = 1
 
 [node name="CheckButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 1032.0
-offset_top = 7.0
-offset_right = 1072.0
-offset_bottom = 47.0
+offset_left = 929.0
+offset_top = 9.0
+offset_right = 1441.0
+offset_bottom = 265.0
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("3_424x8")
 
 [node name="ResetButton" type="TextureButton" parent="UI"]
 layout_mode = 0
-offset_left = 874.0
-offset_top = 9.0
-offset_right = 988.0
-offset_bottom = 112.0
+offset_left = 771.0
+offset_top = 11.0
+offset_right = 1283.0
+offset_bottom = 267.0
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("4_cfexe")
 
 [node name="ErrorFlash" type="TextureRect" parent="UI"]
@@ -60,6 +63,13 @@ offset_bottom = 675.0
 texture = ExtResource("3_tx016")
 
 [node name="CutPreview" type="Sprite2D" parent="."]
-position = Vector2(474, 241)
+visible = false
+position = Vector2(471, 231)
 scale = Vector2(1.13711, 1.13711)
 texture = ExtResource("6_424x8")
+
+[node name="DonutCutter" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(475, 226)
+scale = Vector2(0.193359, 0.193359)
+texture = ExtResource("7_cfexe")

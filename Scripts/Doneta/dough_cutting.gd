@@ -4,26 +4,43 @@ signal donut_cutting_finished
 
 @onready var dough: Sprite2D = $Dough
 @onready var cut_container: Node2D = $CutContainer
-@onready var cut_preview: Sprite2D = $CutPreview
 @onready var instruction: Label = $UI/InstructionLabel
 @onready var check_button: TextureButton = $UI/CheckButton
 @onready var reset_button: TextureButton = $UI/ResetButton
 @onready var error_flash: TextureRect = $UI/ErrorFlash
 
-const REQUIRED_CUTS := 8
-const CUT_RADIUS := 36.0
+# -------------------------
+# PRELOADED SPRITE SCENES
+# -------------------------
+const CUTTER_SCENE := preload("res://Scenes/Minigames/Doneta/Cutter.tscn")
+const STAMP_SCENE := preload("res://Scenes/Minigames/Doneta/DonutStamp.tscn")
+
+# -------------------------
+# CONFIG
+# -------------------------
+const REQUIRED_CUTS := 6
+const CUT_RADIUS := 70.0
 const OVERLAP_PADDING := 6.0
 
+# -------------------------
+# STATE
+# -------------------------
 var cuts: Array[Vector2] = []
-var active := false   # 🔑 IMPORTANT
+var active := false
+var cut_preview: Sprite2D
 
 # -------------------------
 # READY
 # -------------------------
 func _ready():
 	instruction.text = "Cut 6 donuts"
-	cut_preview.visible = false
 	error_flash.visible = false
+
+	# Create cutter preview instance
+	cut_preview = CUTTER_SCENE.instantiate()
+	add_child(cut_preview)
+	cut_preview.visible = false
+	cut_preview.z_index = 5
 
 	check_button.pressed.connect(_on_check_pressed)
 	reset_button.pressed.connect(reset_cuts)
@@ -31,7 +48,7 @@ func _ready():
 	set_process_unhandled_input(false)
 
 # -------------------------
-# ACTIVATE / RESET
+# ACTIVATE / DEACTIVATE
 # -------------------------
 func reset_and_activate():
 	reset_cuts()
@@ -41,6 +58,7 @@ func reset_and_activate():
 func deactivate():
 	active = false
 	set_process_unhandled_input(false)
+	cut_preview.visible = false
 
 # -------------------------
 # INPUT
@@ -57,7 +75,7 @@ func _unhandled_input(event):
 			try_place_cut(event.position)
 
 # -------------------------
-# PREVIEW
+# PREVIEW (CUTTER)
 # -------------------------
 func _update_preview(mouse_pos: Vector2):
 	if not _mouse_over_dough(mouse_pos):
@@ -68,7 +86,7 @@ func _update_preview(mouse_pos: Vector2):
 	cut_preview.global_position = mouse_pos
 
 # -------------------------
-# PLACE CUT
+# PLACE CUT (STAMP)
 # -------------------------
 func try_place_cut(mouse_pos: Vector2):
 	if not _mouse_over_dough(mouse_pos):
@@ -85,9 +103,10 @@ func try_place_cut(mouse_pos: Vector2):
 	_place_cut(mouse_pos)
 
 func _place_cut(pos: Vector2):
-	var cut := Sprite2D.new()
-	cut.texture = cut_preview.texture
+	var cut: Sprite2D = STAMP_SCENE.instantiate()
 	cut.global_position = pos
+	cut.z_index = 1
+
 	cut_container.add_child(cut)
 	cuts.append(pos)
 
@@ -97,7 +116,7 @@ func _place_cut(pos: Vector2):
 func _on_check_pressed():
 	if cuts.size() == REQUIRED_CUTS:
 		deactivate()
-		emit_signal("donut_cutting_finished")
+		donut_cutting_finished.emit()
 		queue_free()
 	else:
 		reset_cuts()
@@ -105,7 +124,9 @@ func _on_check_pressed():
 func reset_cuts():
 	for child in cut_container.get_children():
 		child.queue_free()
+
 	cuts.clear()
+	cut_preview.visible = false
 
 # -------------------------
 # HELPERS

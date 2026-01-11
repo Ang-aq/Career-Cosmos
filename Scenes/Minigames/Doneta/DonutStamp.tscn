@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqbnxc07qpfys"]
+
+[ext_resource type="Texture2D" uid="uid://ct5ds6gi0d72m" path="res://Sprites/Doneta/Doneta/cut1.png" id="1_j2k5f"]
+
+[node name="DonutStamp" type="Sprite2D"]
+texture = ExtResource("1_j2k5f")
+offset = Vector2(-6, 26)

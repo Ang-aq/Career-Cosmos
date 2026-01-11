@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" uid="uid://du5643mf6mbrx" path="res://Scripts/Doneta/dough.gd" id="1_ywaft"]
 [ext_resource type="Texture2D" uid="uid://cw7eyibittt4a" path="res://Sprites/Doneta/Doneta/table.png" id="2_3jqqg"]
-[ext_resource type="Texture2D" uid="uid://cco7clugd7i8r" path="res://Sprites/Doneta/Doneta/dough1.png" id="3_3jqqg"]
 [ext_resource type="Texture2D" uid="uid://bha8jpuoto5uq" path="res://Sprites/Doneta/Doneta/dough11.png" id="4_3ggx1"]
 [ext_resource type="Texture2D" uid="uid://bwvth1yfvuqsv" path="res://Sprites/Doneta/Doneta/yellowstopbar.png" id="4_bnt40"]
+[ext_resource type="Texture2D" uid="uid://cj37yj84l4c7e" path="res://Sprites/Doneta/Doneta/stop.png" id="5_pqti3"]
 [ext_resource type="Texture2D" uid="uid://cesakxyymp7ha" path="res://Sprites/Doneta/Doneta/dough22.png" id="5_yx20l"]
 [ext_resource type="Texture2D" uid="uid://c11gqpnm06rug" path="res://Sprites/Doneta/Doneta/dough33.png" id="6_bnt40"]
-[ext_resource type="Texture2D" uid="uid://ecqwnfdfuwxv" path="res://Sprites/Doneta/Doneta/check.png" id="6_hpxjx"]
+[ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="6_it1e2"]
 [ext_resource type="Texture2D" uid="uid://bf2ejoiw3rpep" path="res://Sprites/Doneta/Doneta/stopbar.png" id="7_yx20l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ywaft"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_3jqqg")
+"texture": ExtResource("4_3ggx1")
 }],
 "loop": true,
 "name": &"dough",
@@ -82,24 +82,27 @@ centered = false
 
 [node name="StopButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 535.0
-offset_top = 545.0
-offset_right = 649.0
-offset_bottom = 648.0
-texture_normal = ExtResource("6_hpxjx")
+offset_left = 477.0
+offset_top = 531.0
+offset_right = 989.0
+offset_bottom = 787.0
+scale = Vector2(0.39, 0.39)
+texture_normal = ExtResource("5_pqti3")
 
 [node name="InstructionLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 420.0
-offset_top = 111.0
-offset_right = 748.0
-offset_bottom = 134.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_left = 31.0
+offset_top = 423.0
+offset_right = 1116.0
+offset_bottom = 459.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_it1e2")
+theme_override_font_sizes/font_size = 30
+text = "Test Test"
+horizontal_alignment = 1
 
 [node name="Dough" type="AnimatedSprite2D" parent="."]
 position = Vector2(548, 259)
 scale = Vector2(0.852623, 0.852624)
 sprite_frames = SubResource("SpriteFrames_ywaft")
-animation = &"knead"
-frame = 2
-frame_progress = 1.0
+animation = &"dough"
