@@ -18,7 +18,7 @@ const STAMP_SCENE := preload("res://Scenes/Minigames/Doneta/DonutStamp.tscn")
 # -------------------------
 # CONFIG
 # -------------------------
-const REQUIRED_CUTS := 6
+const CUTS_REQUIRED := 6
 const CUT_RADIUS := 70.0
 const OVERLAP_PADDING := 6.0
 
@@ -72,7 +72,7 @@ func _unhandled_input(event):
 
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			try_place_cut(event.position)
+			cut_dough(event.position)
 
 # -------------------------
 # PREVIEW (CUTTER)
@@ -88,18 +88,23 @@ func _update_preview(mouse_pos: Vector2):
 # -------------------------
 # PLACE CUT (STAMP)
 # -------------------------
-func try_place_cut(mouse_pos: Vector2):
+func cut_dough(mouse_pos: Vector2):
+	# Stops if the mouse is not over the dough area
 	if not _mouse_over_dough(mouse_pos):
 		return
-
-	if cuts.size() >= REQUIRED_CUTS:
+	
+	# Stops if the required number of cuts has already been reached
+	if cuts.size() >= CUTS_REQUIRED:
 		return
-
+	
+	# Checks for overlap with existing cuts
 	for existing_pos in cuts:
+		# Prevents cuts from being placed too close together
 		if mouse_pos.distance_to(existing_pos) < CUT_RADIUS * 2 + OVERLAP_PADDING:
 			_flash_error()
 			return
-
+	
+	# Places a valid cut at mouse position
 	_place_cut(mouse_pos)
 
 func _place_cut(pos: Vector2):
@@ -114,7 +119,7 @@ func _place_cut(pos: Vector2):
 # CHECK / RESET
 # -------------------------
 func _on_check_pressed():
-	if cuts.size() == REQUIRED_CUTS:
+	if cuts.size() == CUTS_REQUIRED:
 		deactivate()
 		donut_cutting_finished.emit()
 		queue_free()

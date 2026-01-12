@@ -135,3 +135,16 @@ func _shrink_green():
 
 func _set_green_width(width: float):
 	green.size.x = width
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if not active:
+		return
+
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_K:
+			active = false
+			bar_moving = false
+
+			emit_signal("kneading_completed")
+			queue_free()
+			

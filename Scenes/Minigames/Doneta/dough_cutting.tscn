@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cl2ui0w2ad6fo"]
+[gd_scene load_steps=7 format=3 uid="uid://cl2ui0w2ad6fo"]
 
 [ext_resource type="Script" uid="uid://baclt52mhioih" path="res://Scripts/Doneta/dough_cutting.gd" id="1_lvot4"]
 [ext_resource type="Texture2D" uid="uid://s3rdngsuubls" path="res://Sprites/Doneta/Doneta/cuttingdough.png" id="2_424x8"]
 [ext_resource type="Texture2D" uid="uid://ecqwnfdfuwxv" path="res://Sprites/Doneta/Doneta/check.png" id="3_424x8"]
-[ext_resource type="Texture2D" uid="uid://dmxg8fawnceod" path="res://Sprites/foodplanet.png" id="3_tx016"]
 [ext_resource type="Texture2D" uid="uid://c13xe6dq5wtw5" path="res://Sprites/Doneta/Doneta/reset.png" id="4_cfexe"]
 [ext_resource type="Texture2D" uid="uid://bv3y1ej6fn6d0" path="res://Sprites/Doneta/Doneta/cut.png" id="6_424x8"]
 [ext_resource type="Texture2D" uid="uid://l1jlgiyt6ldh" path="res://Sprites/Doneta/Doneta/donutcutter1.png" id="7_cfexe"]
@@ -54,13 +53,12 @@ scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("4_cfexe")
 
 [node name="ErrorFlash" type="TextureRect" parent="UI"]
-visible = false
 layout_mode = 0
-offset_left = 7.0
-offset_top = 27.0
-offset_right = 1159.0
-offset_bottom = 675.0
-texture = ExtResource("3_tx016")
+offset_left = 240.0
+offset_top = 141.0
+offset_right = 891.0
+offset_bottom = 507.0
+texture = ExtResource("4_cfexe")
 
 [node name="CutPreview" type="Sprite2D" parent="."]
 visible = false
