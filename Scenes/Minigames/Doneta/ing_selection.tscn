@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jmdeis1lvlnt"]
+[gd_scene load_steps=13 format=3 uid="uid://jmdeis1lvlnt"]
 
 [ext_resource type="Script" uid="uid://rbjg3ohh1dq6" path="res://Scripts/Doneta/ing_selection.gd" id="1_dhobp"]
 [ext_resource type="Texture2D" uid="uid://7jyvmjntfr8c" path="res://Sprites/Doneta/Doneta/SelectionUI.png" id="2_dhobp"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dholft6xjios3" path="res://Scenes/Minigames/Doneta/Egg.tscn" id="4_8g7eq"]
 [ext_resource type="Texture2D" uid="uid://c8vtf1s3ldia2" path="res://Sprites/Doneta/Doneta/ButtonLeftPressed.png" id="4_talsp"]
 [ext_resource type="Texture2D" uid="uid://bnbtja8jxgo1x" path="res://Sprites/Doneta/Doneta/ButtonLeft.png" id="5_g0yuk"]
+[ext_resource type="PackedScene" uid="uid://c48w1jmm5wrvt" path="res://Scenes/Minigames/Doneta/Butter.tscn" id="10_g0yuk"]
+[ext_resource type="Texture2D" uid="uid://deus3y1ayp7mw" path="res://Sprites/Doneta/Doneta/notepad.png" id="11_jk1f4"]
+[ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="12_84q1u"]
 
 [node name="IngSelectionUI" type="Node2D"]
 script = ExtResource("1_dhobp")
@@ -43,10 +46,52 @@ stretch_mode = 0
 position = Vector2(313, 560)
 
 [node name="Sugar" parent="SlotContainer" instance=ExtResource("2_wwx0l")]
-position = Vector2(77, -1)
+position = Vector2(-3, -1)
 
 [node name="Flour" parent="SlotContainer" instance=ExtResource("3_dhobp")]
-position = Vector2(304, -4)
+position = Vector2(224, -4)
 
 [node name="Egg" parent="SlotContainer" instance=ExtResource("4_8g7eq")]
-position = Vector2(191, 1)
+position = Vector2(111, 1)
+
+[node name="Butter" parent="SlotContainer" instance=ExtResource("10_g0yuk")]
+position = Vector2(361, -2)
+
+[node name="Notepad" type="Sprite2D" parent="."]
+position = Vector2(917, 242)
+scale = Vector2(0.35357, 0.35357)
+texture = ExtResource("11_jk1f4")
+
+[node name="Lines" type="Label" parent="Notepad"]
+offset_left = -339.395
+offset_top = -342.224
+offset_right = 438.605
+offset_bottom = -226.224
+theme_override_colors/font_color = Color(0.47788, 0.47788, 0.47788, 1)
+theme_override_fonts/font = ExtResource("12_84q1u")
+theme_override_font_sizes/font_size = 90
+text = "_______________"
+
+[node name="Items" type="Label" parent="Notepad"]
+offset_left = -313.941
+offset_top = -220.607
+offset_right = 393.059
+offset_bottom = 492.393
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(0.481789, 0.48179, 0.481789, 1)
+theme_override_fonts/font = ExtResource("12_84q1u")
+theme_override_font_sizes/font_size = 150
+text = "• Sugar
+• Flour
+• Egg
+• Butter"
+
+[node name="Title" type="Label" parent="Notepad"]
+offset_left = -319.597
+offset_top = -452.527
+offset_right = 387.403
+offset_bottom = -276.527
+theme_override_colors/font_color = Color(0.481789, 0.48179, 0.481789, 1)
+theme_override_fonts/font = ExtResource("12_84q1u")
+theme_override_font_sizes/font_size = 150
+text = "Ingredients:"

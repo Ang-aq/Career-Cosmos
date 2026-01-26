@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c48w1jmm5wrvt"]
+
+[ext_resource type="Script" uid="uid://k1ppsoudrl3c" path="res://Scenes/Minigames/Doneta/butter.gd" id="1_0gche"]
+[ext_resource type="Texture2D" uid="uid://bpe430byopo1c" path="res://Sprites/Doneta/Doneta/butter.png" id="1_bo31u"]
+[ext_resource type="Texture2D" uid="uid://cgofrf1n1y220" path="res://Sprites/Doneta/Doneta/New Piskel-1.png (11).png" id="2_0gche"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n72ik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bo31u")
+}],
+"loop": true,
+"name": &"Butter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0gche")
+}],
+"loop": false,
+"name": &"pouring",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gche"]
+size = Vector2(18.2615, 11.7427)
+
+[node name="Butter" type="Node2D" groups=["butter"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_0gche")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.11458, -19.1146)
+scale = Vector2(0.200875, 0.200875)
+sprite_frames = SubResource("SpriteFrames_n72ik")
+animation = &"Butter"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(10.8854, 27.2188)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-10.8854, -23.8855)
+rotation = -0.322886
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_0gche")

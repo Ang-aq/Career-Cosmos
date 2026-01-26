@@ -1,28 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://j7bkclr6hg"]
+[gd_scene load_steps=7 format=3 uid="uid://j7bkclr6hg"]
 
 [ext_resource type="Script" uid="uid://baq3wlh2gm7gs" path="res://Scripts/main.gd" id="1_r150o"]
-[ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="2_idj7w"]
+[ext_resource type="Texture2D" uid="uid://bimv3lqr2rsch" path="res://Sprites/logoart.png" id="2_idj7w"]
+[ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="3_kln2b"]
+[ext_resource type="Texture2D" uid="uid://cdjbf6g7bshg5" path="res://Sprites/small.png" id="3_v1gob"]
+[ext_resource type="Texture2D" uid="uid://2dejvv8idasy" path="res://Sprites/med.png" id="4_jw32o"]
+[ext_resource type="Texture2D" uid="uid://hjax48waiyfq" path="res://Sprites/big.png" id="5_50glp"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_r150o")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 330.0
-offset_top = 76.0
-offset_right = 797.0
-offset_bottom = 431.0
-theme_override_constants/line_spacing = -40
-theme_override_fonts/font = ExtResource("2_idj7w")
-theme_override_font_sizes/font_size = 150
-text = "Career
-Cosmos"
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 1229.0
+offset_bottom = 694.0
+color = Color(0.258824, 0.278431, 0.588235, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 289.0
+offset_top = 137.0
+offset_right = 337.0
+offset_bottom = 181.0
+scale = Vector2(0.455483, 0.495413)
+
+[node name="Play" type="Label" parent="."]
+offset_left = 282.0
+offset_top = 579.0
+offset_right = 925.0
+offset_bottom = 697.0
+scale = Vector2(1.00444, 0.980141)
+theme_override_fonts/font = ExtResource("3_kln2b")
+theme_override_font_sizes/font_size = 45
+text = "Press any button to start"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="."]
-offset_left = 432.0
-offset_top = 415.0
-offset_right = 703.0
-offset_bottom = 538.0
-text = "PLAY!"
+[node name="Small" type="Sprite2D" parent="."]
+position = Vector2(576, 289)
+rotation = 1.5708
+texture = ExtResource("3_v1gob")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Med" type="Sprite2D" parent="."]
+position = Vector2(585, 315)
+rotation = 1.5708
+texture = ExtResource("4_jw32o")
+
+[node name="Big" type="Sprite2D" parent="."]
+position = Vector2(571, 263)
+rotation = 1.5708
+texture = ExtResource("5_50glp")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(598, 240)
+scale = Vector2(0.76125, 0.76125)
+texture = ExtResource("2_idj7w")
