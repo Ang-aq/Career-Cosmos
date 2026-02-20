@@ -66,7 +66,7 @@ func _process(delta):
 func _on_stop_pressed():
 	if not active or not bar_moving:
 		return
-
+	MusicManager.play_sfx("click")
 	bar_moving = false
 	check_hit()
 

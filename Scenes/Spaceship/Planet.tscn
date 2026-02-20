@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cww5ti5n1f0aa"]
+[gd_scene load_steps=16 format=3 uid="uid://cww5ti5n1f0aa"]
 
 [ext_resource type="Script" uid="uid://j7h0vhx10q4v" path="res://Scripts/planet.gd" id="1_ej51v"]
 [ext_resource type="Texture2D" uid="uid://cxx5w88o1ymll" path="res://Sprites/Doneta/donutplanet.png" id="2_btkwt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d17qfunws30g5" path="res://Sprites/RedButton.png" id="9_bynpq"]
 [ext_resource type="Texture2D" uid="uid://ndqbwt758v40" path="res://Sprites/RedButtonPressed.png" id="10_vl6gk"]
 [ext_resource type="Texture2D" uid="uid://yjo04rh04yrt" path="res://Sprites/RedButtonSelected.png" id="11_0p7ot"]
+[ext_resource type="FontFile" uid="uid://35stosdyb68o" path="res://Odin Rounded - Bold.otf" id="13_r03nr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2hiue"]
 animations = [{
@@ -68,7 +69,9 @@ offset_left = -56.0
 offset_top = 144.0
 offset_right = 187.0
 offset_bottom = 381.0
-theme_override_colors/font_color = Color(0.219626, 0.445708, 1, 1)
+theme_override_colors/font_outline_color = Color(0.286275, 0.509804, 0.956863, 1)
+theme_override_colors/font_color = Color(0.307742, 0.536374, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("4_h8cq0")
 theme_override_font_sizes/font_size = 20
 text = "PLANET INFO"
@@ -101,6 +104,51 @@ scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("9_bynpq")
 texture_pressed = ExtResource("10_vl6gk")
 texture_hover = ExtResource("11_0p7ot")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 363.0
+offset_top = 400.0
+offset_right = 365.0
+offset_bottom = 492.0
+rotation = -0.329867
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+offset_left = -247.313
+offset_top = -37.1098
+offset_right = -245.313
+offset_bottom = 43.8902
+rotation = -0.605629
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 435.0
+offset_right = 151.0
+offset_bottom = 458.0
+theme_override_fonts/font = ExtResource("13_r03nr")
+text = "Blast Off"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 308.0
+offset_top = 377.0
+offset_right = 409.0
+offset_bottom = 400.0
+theme_override_fonts/font = ExtResource("13_r03nr")
+text = "Previous Planet"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 634.0
+offset_top = 394.0
+offset_right = 636.0
+offset_bottom = 497.0
+rotation = 0.329867
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 370.0
+offset_right = 701.0
+offset_bottom = 393.0
+theme_override_fonts/font = ExtResource("13_r03nr")
+text = "Next Planet"
 
 [connection signal="pressed" from="Lever" to="." method="_on_lever_pressed"]
 [connection signal="pressed" from="BlueButton" to="." method="_on_blue_button_pressed"]

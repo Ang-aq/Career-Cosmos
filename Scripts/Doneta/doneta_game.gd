@@ -22,6 +22,7 @@ enum Phase {
 var phase := Phase.WHISKING
 
 func _ready():
+	MusicManager.play_bgm("baking")
 	progress.min_value = 0
 	progress.max_value = DOUGH_MAX
 	progress.value = 0
@@ -41,27 +42,36 @@ func _on_progress_requested(amount: float):
 
 func _show_ingredient_dialogue():
 	dialogue.show_dialogue([
-		{ "name": "Chef", "text": "The first step is adding the ingredients." }
+		{ "name": "Chef", "text": "Hello!" },
+		{ "name": "Chef", "text": "You're the new human chef, aren't you?"},
+		{ "name": "Chef", "text": "You have a lot to learn to work in a bakery!"},
+		{ "name": "Chef", "text": "Lets start with something simple... Donuts!"},
+		{ "name": "Chef", "text": "First, you need to add ingredients into the bowl. The list is right here!"}
 	])
 
 func _show_mix_dialogue():
 	dialogue.show_dialogue([
-		{ "name": "Chef", "text": "Now mix the ingredients together." }
+		{ "name": "Chef", "text": "You did a... PERFECT job!" },
+		{ "name": "Chef", "text": "Next, mix the ingredients together. Make sure to mix in fast, circular motions!" }
 	])
 
 func _show_kneading_dialogue():
 	dialogue.show_dialogue([
-		{ "name": "Chef", "text": "Now knead the dough until it’s smooth." }
+		{ "name": "Chef", "text": "Wow, you're a natural at this!!" },
+		{ "name": "Chef", "text": "Next please knead the dough until it’s smooth." }
 	])
 
 func _show_cutting_dialogue():
 	dialogue.show_dialogue([
-		{ "name": "Chef", "text": "Time to cut the donuts carefully." }
+		{ "name": "Chef", "text": "Good job!" },
+		{ "name": "Chef", "text": "You can tell the dough is ready if its smooth and no longer sticky to the touch." },
+		{ "name": "Chef", "text": "The next step is to cut the donuts. Please cut 6 of them into the dough!" },
 	])
 
 func _show_decorating_dialogue():
 	dialogue.show_dialogue([
-		{ "name": "Chef", "text": "Decorate your donuts however you like!" }
+		{ "name": "Chef", "text": "Next is my favorite part, decorating!" },
+		{ "name": "Chef", "text": "Time to show your creativity. Decorate the donuts however you'd like!"},
 	])
 
 func _on_whisking_completed():

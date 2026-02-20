@@ -9,6 +9,7 @@ var current_index := 0
 var transitioning := false
 
 func _ready():
+	MusicManager.play_sfx("scene1")
 	# Collect all Sprite2D children as panels
 	for child in get_children():
 		if child is Sprite2D:
@@ -39,7 +40,11 @@ func _show_next_panel():
 
 	transitioning = true
 	current_index += 1
-
+	if current_index == 1:
+		MusicManager.play_sfx("scene2")
+	if current_index == 2:
+		MusicManager.play_sfx("scene3")
+	
 	var panel := panels[current_index]
 	panel.modulate.a = 0.0
 

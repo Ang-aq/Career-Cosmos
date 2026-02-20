@@ -44,3 +44,5 @@ position = Vector2(-10.8854, -23.8855)
 rotation = -0.322886
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_0gche")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

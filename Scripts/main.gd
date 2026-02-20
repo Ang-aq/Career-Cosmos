@@ -13,6 +13,7 @@ var small_speed := 28.0
 var screen_height := 0
 
 func _ready():
+	MusicManager.play_bgm("title", true)
 	screen_height = get_viewport_rect().size.y
 	start_glow_tween()
 
@@ -49,4 +50,5 @@ func start_glow_tween():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			MusicManager.play_sfx("start")
 			get_tree().change_scene_to_file("res://Scenes/Spaceship/Backstory.tscn")

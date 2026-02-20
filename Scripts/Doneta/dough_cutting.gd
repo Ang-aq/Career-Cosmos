@@ -119,6 +119,7 @@ func _place_cut(pos: Vector2):
 # CHECK / RESET
 # -------------------------
 func _on_check_pressed():
+	MusicManager.play_sfx("click")
 	if cuts.size() == CUTS_REQUIRED:
 		deactivate()
 		donut_cutting_finished.emit()
@@ -127,6 +128,7 @@ func _on_check_pressed():
 		reset_cuts()
 
 func reset_cuts():
+	MusicManager.play_sfx("click")
 	for child in cut_container.get_children():
 		child.queue_free()
 

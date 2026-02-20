@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://0vfdvyg2kc1v"]
+[gd_scene load_steps=16 format=3 uid="uid://0vfdvyg2kc1v"]
 
 [ext_resource type="Script" uid="uid://bnf784rg12vw0" path="res://Scripts/Doneta/doneta_game.gd" id="1_767ap"]
+[ext_resource type="Texture2D" uid="uid://b0jeoeaqwbras" path="res://Sprites/Doneta/Doneta/bakery.png" id="2_45p36"]
 [ext_resource type="PackedScene" uid="uid://7cctxl6h44i5" path="res://Scenes/Minigames/Doneta/MixingBowl.tscn" id="2_mr7up"]
 [ext_resource type="PackedScene" uid="uid://dholft6xjios3" path="res://Scenes/Minigames/Doneta/Egg.tscn" id="3_767ap"]
 [ext_resource type="PackedScene" uid="uid://0hn66qeydw4j" path="res://Scenes/Minigames/Doneta/whisk.tscn" id="3_mr7up"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bhigo5bwp4jop" path="res://Dialogue.tscn" id="9_g4bnx"]
 [ext_resource type="PackedScene" uid="uid://cl2ui0w2ad6fo" path="res://Scenes/Minigames/Doneta/dough_cutting.tscn" id="10_dss4p"]
 [ext_resource type="PackedScene" uid="uid://dasclmg5sjoma" path="res://Scenes/Minigames/Doneta/DonutDecorating.tscn" id="11_e23ma"]
+[ext_resource type="Texture2D" uid="uid://qfknx7famgm2" path="res://Sprites/Doneta/Doneta/settings.png" id="13_n8bsh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dss4p"]
 bg_color = Color(0.396078, 0.376471, 0.658824, 1)
@@ -37,6 +39,11 @@ corner_radius_bottom_left = 15
 
 [node name="Minigame" type="Node2D"]
 script = ExtResource("1_767ap")
+
+[node name="Bakery" type="Sprite2D" parent="."]
+position = Vector2(573, 328)
+scale = Vector2(0.527778, 0.527778)
+texture = ExtResource("2_45p36")
 
 [node name="MixingBowl" parent="." instance=ExtResource("2_mr7up")]
 position = Vector2(0, -1)
@@ -90,3 +97,8 @@ offset_right = -6.0
 offset_bottom = 2.0
 
 [node name="Dialogue" parent="." instance=ExtResource("9_g4bnx")]
+
+[node name="Settings" type="Sprite2D" parent="."]
+position = Vector2(44, 44)
+scale = Vector2(0.382813, 0.382813)
+texture = ExtResource("13_n8bsh")

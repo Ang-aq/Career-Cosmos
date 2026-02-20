@@ -4,6 +4,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	MusicManager.play_bgm("space", true)
+
 	blink.play("blink")
 	screenblink.play("blink")
 	pass # Replace with function body.

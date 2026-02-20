@@ -8,7 +8,7 @@ const SLOT_SPACING := 120
 const VISIBLE_SLOTS := 5
 const SLIDE_TIME := 0.25
 
-var ingredients: Array[Node2D] = []
+var ingredients: Array[Node2D] = [] 
 var start_index := 0
 var tween: Tween
 

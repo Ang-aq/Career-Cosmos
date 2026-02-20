@@ -8,7 +8,7 @@ var finalPlanet: int = 2
 
 var planet_infos := {
 	1: "NAME: Doneta\n-----------------\nPROFESSION: Chef\n\nINFO: Donetians love\ndesserts and candy!\n\nDIFFICULTY: Easy",
-	2: "NAME: Arteca\n-----------------\nPROFESSION: Architect\n\nINFO: A planet packed\nwith skyscrapers!\n\nDIFFICULTY: Medium"
+	2: "NAME: Cirnet-01\n-----------------\nPROFESSION: Software\nEngineer\n\nINFO: A planet of\ncode and data?!\n\nDIFFICULTY: Medium"
 }
 
 var typing_speed: float = 0.03
@@ -21,6 +21,7 @@ func _ready():
 	_show_planet_info(currentPlanet)
 
 func _on_blue_button_pressed() -> void:
+	MusicManager.play_sfx("click")
 	if currentPlanet <= 1:
 		return
 
@@ -30,6 +31,7 @@ func _on_blue_button_pressed() -> void:
 	_play_planet_transition(previous, currentPlanet)
 
 func _on_red_button_pressed() -> void:
+	MusicManager.play_sfx("click")
 	if currentPlanet >= finalPlanet:
 		return
 
@@ -39,6 +41,7 @@ func _on_red_button_pressed() -> void:
 	_play_planet_transition(previous, currentPlanet)
 
 func _on_lever_pressed() -> void:
+	MusicManager.play_sfx("start")
 	if currentPlanet == 1:
 		get_tree().change_scene_to_file("res://Scenes/Minigames/Doneta/DonetaGame.tscn")
 	if currentPlanet == 2:
