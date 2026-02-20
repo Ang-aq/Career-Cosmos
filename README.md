@@ -1,3 +1,5 @@
+<img src="Sprites/logoart.png" width="400">
+
 # ☄️Career Cosmos 
 
 A video game made for FBLA's Computer Game and Simulation Programming 2025-2026 Event!
