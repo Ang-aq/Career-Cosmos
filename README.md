@@ -1,4 +1,4 @@
-<img src="Sprites/logoart.png" width="400">
+<img src="Sprites/logoart.png" width="300">
 
 # ☄️Career Cosmos 
 
