@@ -9,29 +9,17 @@ signal donut_cutting_finished
 @onready var reset_button: TextureButton = $UI/ResetButton
 @onready var error_flash: TextureRect = $UI/ErrorFlash
 
-# -------------------------
-# PRELOADED SPRITE SCENES
-# -------------------------
 const CUTTER_SCENE := preload("res://Scenes/Minigames/Doneta/Cutter.tscn")
 const STAMP_SCENE := preload("res://Scenes/Minigames/Doneta/DonutStamp.tscn")
 
-# -------------------------
-# CONFIG
-# -------------------------
 const CUTS_REQUIRED := 6
 const CUT_RADIUS := 70.0
 const OVERLAP_PADDING := 6.0
 
-# -------------------------
-# STATE
-# -------------------------
 var cuts: Array[Vector2] = []
 var active := false
 var cut_preview: Sprite2D
 
-# -------------------------
-# READY
-# -------------------------
 func _ready():
 	instruction.text = "Cut 6 donuts"
 	error_flash.visible = false
@@ -47,9 +35,6 @@ func _ready():
 
 	set_process_unhandled_input(false)
 
-# -------------------------
-# ACTIVATE / DEACTIVATE
-# -------------------------
 func reset_and_activate():
 	reset_cuts()
 	active = true
@@ -60,9 +45,6 @@ func deactivate():
 	set_process_unhandled_input(false)
 	cut_preview.visible = false
 
-# -------------------------
-# INPUT
-# -------------------------
 func _unhandled_input(event):
 	if not active:
 		return
@@ -74,9 +56,6 @@ func _unhandled_input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			cut_dough(event.position)
 
-# -------------------------
-# PREVIEW (CUTTER)
-# -------------------------
 func _update_preview(mouse_pos: Vector2):
 	if not _mouse_over_dough(mouse_pos):
 		cut_preview.visible = false
@@ -85,9 +64,6 @@ func _update_preview(mouse_pos: Vector2):
 	cut_preview.visible = true
 	cut_preview.global_position = mouse_pos
 
-# -------------------------
-# PLACE CUT (STAMP)
-# -------------------------
 func cut_dough(mouse_pos: Vector2):
 	# Stops if the mouse is not over the dough area
 	if not _mouse_over_dough(mouse_pos):
@@ -115,9 +91,6 @@ func _place_cut(pos: Vector2):
 	cut_container.add_child(cut)
 	cuts.append(pos)
 
-# -------------------------
-# CHECK / RESET
-# -------------------------
 func _on_check_pressed():
 	MusicManager.play_sfx("click")
 	if cuts.size() == CUTS_REQUIRED:
@@ -135,9 +108,6 @@ func reset_cuts():
 	cuts.clear()
 	cut_preview.visible = false
 
-# -------------------------
-# HELPERS
-# -------------------------
 func _mouse_over_dough(mouse_pos: Vector2) -> bool:
 	var rect := dough.get_rect()
 	rect.position = dough.global_position - rect.size / 2

@@ -5,7 +5,6 @@ extends Node2D
 @onready var smallstars: Sprite2D = $Small
 @onready var pressanybutton: Label = $Play
 
-# Parallax speeds (adjust to taste)
 var big_speed := 8.0
 var med_speed := 16.0
 var small_speed := 28.0
@@ -25,7 +24,6 @@ func _process(delta):
 func move_stars(stars: Sprite2D, speed: float, delta: float):
 	stars.position.y += speed * delta
 
-	# Loop when off screen
 	if stars.position.y >= screen_height:
 		stars.position.y = 0
 

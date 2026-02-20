@@ -1,17 +1,8 @@
 extends Node
 class_name AudioManager
 
-# =====================
-# VOLUME
-# =====================
-
 var music_volume_db := -10.0
 var sfx_volume_db := -8.0
-
-
-# =====================
-# LIBRARIES
-# =====================
 
 var bgm_library := {
 	"title": preload("res://Sound/Title.ogg"),
@@ -26,11 +17,6 @@ var sfx_library := {
 	"scene2": preload("res://Sound/scene2.ogg"),
 	"scene3": preload("res://Sound/scene3.mp3"),
 }
-
-
-# =====================
-# PLAYERS
-# =====================
 
 var music_player: AudioStreamPlayer
 var sfx_players: Array[AudioStreamPlayer] = []
@@ -49,11 +35,6 @@ func _ready():
 		p.volume_db = sfx_volume_db
 		add_child(p)
 		sfx_players.append(p)
-
-
-# =====================
-# MUSIC
-# =====================
 
 func play_bgm(name: String, loop := true):
 	if not bgm_library.has(name):
@@ -77,11 +58,6 @@ func play_bgm(name: String, loop := true):
 func stop_bgm():
 	music_player.stop()
 
-
-# =====================
-# SFX
-# =====================
-
 func play_sfx(name: String):
 	if not sfx_library.has(name):
 		push_warning("AudioManager: Missing SFX " + name)
@@ -94,11 +70,6 @@ func play_sfx(name: String):
 			p.stream = stream
 			p.play()
 			return
-
-
-# =====================
-# VOLUME
-# =====================
 
 func set_music_volume(db: float):
 	music_volume_db = db

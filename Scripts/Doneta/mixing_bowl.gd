@@ -19,7 +19,6 @@ var whisk_quality: float = 0.0
 var local_progress: float = 0.0
 var mixing_locked := true
 
-# Motion tracking for smooth spiral
 var angular_velocity := 0.0
 var spiral_rotation_speed := 0.0
 var target_spiral_speed := 0.0
@@ -32,17 +31,14 @@ const WHISK_MAX_PROGRESS := 25.0
 const WHISK_GAIN_SPEED := 16.0
 const WHISK_DECAY_SPEED := 3.0
 
-const SPIRAL_SMOOTH := 8.0  # Smooth lerp factor for spiral while whisking
-const SPIRAL_DECAY := 3.0   # Slowdown factor when stopping
+const SPIRAL_SMOOTH := 8.0 
+const SPIRAL_DECAY := 3.0  
 
 func _ready() -> void:
 	whisk.hide()
 	spiral.hide()
 	bowl.play("bowl")
 
-# --------------------------------------------------
-# MAIN LOOP
-# --------------------------------------------------
 func _process(delta: float) -> void:
 	if not whisking_time or whisk_done:
 		return
@@ -67,9 +63,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		whisk_held = event.pressed
 
-# --------------------------------------------------
-# WHISK MOTION SYSTEM
-# --------------------------------------------------
 func update_whisk_quality(delta: float) -> void:
 	var mouse_pos := get_viewport().get_mouse_position()
 	var center := bowl.global_position
@@ -83,7 +76,6 @@ func update_whisk_quality(delta: float) -> void:
 	var radius := vec.length()
 	var max_radius := circle.radius
 
-	# Outside bowl → decay
 	if radius > max_radius:
 		whisk_quality = move_toward(whisk_quality, 0.0, delta * 4.0)
 		target_spiral_speed = 0.0
@@ -97,19 +89,15 @@ func update_whisk_quality(delta: float) -> void:
 	var delta_angle := wrapf(angle - last_angle, -PI, PI)
 	last_angle = angle
 
-	# Compute angular velocity
 	angular_velocity = delta_angle / delta
 
-	# Too slow → decay
 	if abs(angular_velocity) < 0.5:
 		whisk_quality = move_toward(whisk_quality, 0.0, delta * 3.0)
 		target_spiral_speed = 0.0
 		return
 
-	# Detect spin direction
 	spin_direction = sign(angular_velocity)
 
-	# Explicitly typed scores to satisfy GDScript
 	var radius_score: float = clamp(radius / max_radius, 0.4, 1.0)
 	var speed_score: float = clamp(abs(angular_velocity) / 8.0, 0.3, 1.0)
 
@@ -117,12 +105,8 @@ func update_whisk_quality(delta: float) -> void:
 
 	whisk_quality = lerp(whisk_quality, target_quality, 6.0 * delta)
 
-	# Smooth spiral speed target
 	target_spiral_speed = angular_velocity * 0.6
 
-# --------------------------------------------------
-# PROGRESS SYSTEM
-# --------------------------------------------------
 func update_progress(delta: float) -> void:
 	if whisk_quality > 0.05:
 		local_progress = clamp(
@@ -137,9 +121,6 @@ func update_progress(delta: float) -> void:
 		whisk_done = true
 		emit_signal("whisking_completed")
 
-# --------------------------------------------------
-# SPIRAL VISUAL FEEDBACK (SMOOTH)
-# --------------------------------------------------
 func _update_spiral(active: bool, delta: float) -> void:
 	if active:
 		if not spiral.visible:
@@ -151,9 +132,6 @@ func _update_spiral(active: bool, delta: float) -> void:
 
 	spiral.rotation += spiral_rotation_speed * delta
 
-# --------------------------------------------------
-# INGREDIENT POURING
-# --------------------------------------------------
 func pour_ingredient(ingredient: Node2D, group_name: String) -> void:
 	if poured[group_name]:
 		return
@@ -191,9 +169,6 @@ func pour_ingredient(ingredient: Node2D, group_name: String) -> void:
 			get_parent()._on_all_ingredients_added()
 	)
 
-# --------------------------------------------------
-# START WHISKING
-# --------------------------------------------------
 func start_whisking() -> void:
 	mixing_locked = false
 	whisking_time = true
@@ -205,9 +180,6 @@ func start_whisking() -> void:
 
 	bowl.play("mix")
 
-# --------------------------------------------------
-# BOWL DETECTION
-# --------------------------------------------------
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var ingredient := area.get_parent()
 

@@ -48,7 +48,6 @@ func _on_lever_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scenes/Landings/ArtecaLanding.tscn")
 
 func _play_planet_transition(oldPlanet: int, newPlanet: int) -> void:
-	# Create a temporary sprite for the old planet
 	var old_sprite := PlanetImage.duplicate() as AnimatedSprite2D
 	add_child(old_sprite)
 	old_sprite.play("%d" % oldPlanet)
@@ -56,22 +55,18 @@ func _play_planet_transition(oldPlanet: int, newPlanet: int) -> void:
 	old_sprite.z_index = PlanetImage.z_index + 1
 	old_sprite.modulate.a = 1.0
 
-	# Set new planet behind old one
 	PlanetImage.play("%d" % newPlanet)
 	PlanetImage.modulate.a = 0.0
 	PlanetImage.z_index = 0
 
-	# Tween fade out old planet and fade in new planet
 	var tween := create_tween()
 	tween.tween_property(old_sprite, "modulate:a", 0.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_callback(func(): old_sprite.queue_free())
 	tween.tween_property(PlanetImage, "modulate:a", 1.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-	# Update planet info with typewriter effect
 	_show_planet_info(newPlanet)
 
 func _show_planet_info(planet_id: int) -> void:
-	# Stop any previous typing/blinking tasks
 	if typing_task != null and typing_task.is_inside_tree():
 		typing_task.stop()
 		typing_task.queue_free()
@@ -81,10 +76,8 @@ func _show_planet_info(planet_id: int) -> void:
 		blinking_task.queue_free()
 		blinking_task = null
 
-	# Clear text immediately
 	PlanetInfo.text = ""
 
-	# Start typing effect
 	_start_typing_effect(planet_infos[planet_id])
 
 func _start_typing_effect(full_text: String) -> void:
@@ -98,7 +91,6 @@ func _start_typing_effect(full_text: String) -> void:
 		typing_task.start()
 		await typing_task.timeout
 
-	# After typing finished, start blinking cursor
 	_start_blinking_cursor(full_text)
 	typing_task.queue_free()
 	typing_task = null

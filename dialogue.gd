@@ -12,19 +12,13 @@ var current_index: int = 0
 var active: bool = false
 var typing: bool = false
 
-const TYPE_SPEED := 0.035   # seconds per character
+const TYPE_SPEED := 0.035   
 
-# -------------------------
-# READY
-# -------------------------
 func _ready() -> void:
 	text_label.text = ""
 	name_tag.text = ""
 	Dialogue.hide()
 
-# -------------------------
-# TAP / CLICK INPUT
-# -------------------------
 func _unhandled_input(event: InputEvent) -> void:
 	if not active:
 		return
@@ -35,10 +29,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			advance_dialogue()
 
-# -------------------------
-# PUBLIC ENTRY POINT
-# dialogues = [{ "name":"Chef", "text":"Hello." }, ...]
-# -------------------------
 func show_dialogue(dialogues: Array) -> void:
 	if dialogues.is_empty():
 		dialogue_finished.emit()
@@ -51,9 +41,6 @@ func show_dialogue(dialogues: Array) -> void:
 	Dialogue.show()
 	_show_current_dialogue()
 
-# -------------------------
-# DIALOGUE FLOW
-# -------------------------
 func _show_current_dialogue() -> void:
 	if current_index >= dialogue_queue.size():
 		end_dialogue()

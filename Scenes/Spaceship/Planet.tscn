@@ -113,6 +113,7 @@ offset_bottom = 492.0
 rotation = -0.329867
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
 offset_left = -247.313
 offset_top = -37.1098
 offset_right = -245.313

@@ -45,7 +45,6 @@ func _ready():
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	_update_all()
 
-	# Mouse-only input via Area2D
 	donut_hitbox.input_event.connect(_on_donut_clicked)
 	icing_hitbox.input_event.connect(_on_icing_clicked)
 
