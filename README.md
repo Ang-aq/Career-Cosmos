@@ -19,5 +19,6 @@ A video game made for FBLA's Computer Game and Simulation Programming 2025-2026 
 
 **Language:** GDScript
 
+**Artwork:** Krita
 
 ###### Made with ❤️ by Ang 
